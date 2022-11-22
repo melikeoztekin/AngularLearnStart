@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ProductListComponent {
   title: string = 'Product List';
+  productCardClass: string = 'card col-3 ms-3 mb-3';
   products: any[] = [
     {
       id: 1,

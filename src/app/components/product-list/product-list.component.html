@@ -11,7 +11,7 @@
     <!--# *ngIf  -->
     <div
       *ngIf="isProductCardShow(product); else productDiscontinued"
-      class="card col-3 me-2 mb-2"
+      [class]="productCardClass"
     >
       <div class="card-body">
         <h5 class="card-title">{{ product.name }}</h5>
@@ -28,7 +28,9 @@
 
     <ng-template #productDiscontinued>
       <div
-        class="card col-3 me-2 mb-2 d-flex justify-content-center align-items-center"
+        class="{{
+          productCardClass
+        }} d-flex justify-content-center align-items-center"
       >
         <p>{{ product.name }} isimli ürün şuan satılmıyor</p>
       </div>
