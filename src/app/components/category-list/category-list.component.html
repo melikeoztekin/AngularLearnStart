@@ -1,0 +1,10 @@
+<h1 class="display-6">{{ title }}</h1>
+
+<ul class="list-group">
+  <!-- Built-in Directive -->
+  <!--. *ngFor is a built-in structural directive -->
+
+  <li *ngFor="let category of categories" class="list-group-item">
+    {{ category.name }}
+  </li>
+</ul>

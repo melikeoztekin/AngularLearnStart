@@ -1,0 +1,38 @@
+<h1 class="display-6">{{ title }}</h1>
+<div class="row">
+  <!--# Built-in Directive -->
+
+  <!--# ngFor is a built-in structural directive -->
+  <!-- <div *ngFor="let product of products"> -->
+
+  <!--# Attribute directive  -->
+  <ng-template ngFor let-product [ngForOf]="products">
+    <!-- Sanal, html tarafında render'lanmayan veya bir etikete karşılık gelmeyen bir etiket olacak -->
+    <!--# *ngIf  -->
+    <div
+      *ngIf="isProductCardShow(product); else productDiscontinued"
+      class="card col-3 me-2 mb-2"
+    >
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+        <a href="#" class="btn btn-primary">Add to cart</a>
+      </div>
+    </div>
+    <!-- Satılan ürünlerin listesi -->
+
+    <!-- </div> -->
+
+    <ng-template #productDiscontinued>
+      <div
+        class="card col-3 me-2 mb-2 d-flex justify-content-center align-items-center"
+      >
+        <p>{{ product.name }} isimli ürün şuan satılmıyor</p>
+      </div>
+    </ng-template>
+    <!-- satılmayan ürünlerin bilgisi -->
+  </ng-template>
+</div>
