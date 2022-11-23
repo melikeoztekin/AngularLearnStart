@@ -3,8 +3,19 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-
+  navItems: any[] = [
+    {
+      label: 'Home',
+      routerLink: '/',
+      isRouterActiveExact: true,
+    },
+    {
+      label: 'Login',
+      routerLink: '/login',
+      isRouterActiveExact: false,
+    },
+  ];
 }

@@ -5,6 +5,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomePageComponent },
+  { path: 'category/:categoryId', component: HomePageComponent },
   { path: 'login', component: LoginPageComponent },
 ];
 

@@ -2,9 +2,23 @@
 
 <ul class="list-group">
   <!-- Built-in Directive -->
-  <!--. *ngFor is a built-in structural directive -->
+  <!--# *ngFor is a built-in structural directive -->
 
-  <li *ngFor="let category of categories" class="list-group-item">
+  <button
+    routerLink="/"
+    (click)="onSelectedCategory(null)"
+    class="list-group-item text-start"
+  >
+    All
+  </button>
+  <button
+    *ngFor="let category of categories"
+    routerLink="/category/{{ category.id }}"
+    (click)="onSelectedCategory(category)"
+    class="list-group-item text-start"
+  >
+    <!-- [routerLink]="'category/' + category.id" veya [routerLink]="['category', category.id]" de olabilir. -->
+    <!--# routerLinklerde başında / olmazsa o anki route pathine ekleme yapar. routerlink / ile başladığı taktirde alan adının (localhost:4200) sonuna verdiğimiz route path'ini ekleyerek değiştirir. -->
     {{ category.name }}
-  </li>
+  </button>
 </ul>

@@ -19,4 +19,23 @@ export class CategoryListComponent {
     { id: 9, name: 'Snacks' },
     { id: 10, name: 'Sweets' },
   ];
+
+  selectedCategoryId: number | null = 0;
+
+  onSelectedCategory(category: any | null) {
+    // if (category === null) this.selectedCategoryId = null;
+    // else this.selectedCategoryId = category.id;
+    // yerine
+
+    //# Debugging
+    // debugger; // breakpoint. Uygulama çalışma anında bu satıra gelince duracak ve adım adım takip edebileceğimiz bir panel açılacak
+
+    //# ternary operator kullanabiliriz
+    // this.selectedCategoryId = category === null ? null : category.id;
+
+    //# nullish coalescing operator
+    //# object?.id dediğimiz zaman, object null değilse ve id'e ulaşabiliyorsa idsini alır, null ise null döner
+    //# ?? operatörü ile sol taraf false (null, undefined, 0, "") ise sağ tarafı atar
+    this.selectedCategoryId = category?.id ?? null;
+  }
 }
