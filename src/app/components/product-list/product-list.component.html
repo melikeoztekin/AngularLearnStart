@@ -6,7 +6,7 @@
   <!-- <div *ngFor="let product of products"> -->
 
   <!--# Attribute directive  -->
-  <ng-template ngFor let-product [ngForOf]="products">
+  <ng-template ngFor let-product [ngForOf]="filteredProducts">
     <!-- Sanal, html tarafında render'lanmayan veya bir etikete karşılık gelmeyen bir etiket olacak -->
     <!--# *ngIf  -->
     <div
@@ -15,6 +15,9 @@
     >
       <div class="card-body">
         <h5 class="card-title">{{ product.name }}</h5>
+        <p>
+          <small> categoryId: {{ product.categoryId }}</small>
+        </p>
         <p class="card-text">
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
