@@ -85,6 +85,8 @@ export class ProductListComponent implements OnInit {
     return filteredProducts;
   }
 
+  //: ActivatedRoute mevcut route bilgisini almak için kullanılır.
+  //: Router yeni route bilgisi oluşturmak için kullanılır.
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
@@ -95,6 +97,8 @@ export class ProductListComponent implements OnInit {
   getCategoryIdFromRoute(): void {
     //# route params'ları almak adına activatedRoute.params kullanılır
     this.activatedRoute.params.subscribe((params) => {
+      console.log(params);
+
       if (params['categoryId']) {
         this.selectedProductCategoryId = parseInt(params['categoryId']);
       } else {
@@ -106,10 +110,21 @@ export class ProductListComponent implements OnInit {
   getSearchProductNameFromRoute(): void {
     //# query params'ları almak adına activatedRoute.queryParams kullanılır
     this.activatedRoute.queryParams.subscribe((queryParams) => {
-      if (queryParams['searchProductName']) {
+      console.log(queryParams);
+
+      // && this.searchProductNameInput==null
+      if (
+        queryParams['searchProductName'] &&
+        queryParams['searchProductName'] !== this.searchProductNameInput
+      ) {
         this.searchProductNameInput = queryParams['searchProductName'];
-      } else {
-        this.searchProductNameInput = '';
+      }
+      //# Defensive Programing
+      if (
+        !queryParams['searchProductName'] &&
+        this.searchProductNameInput !== null
+      ) {
+        this.searchProductNameInput = null;
       }
     });
   }
@@ -119,7 +134,7 @@ export class ProductListComponent implements OnInit {
   }
 
   onSearchProductNameChange(event: any): void {
-    this.searchProductNameInput = event.target.value;
+    // this.searchProductNameInput = event.target.value; // ngModelimiz kendisi bu işlemi zaten gerçekleştirecek
     const queryParams: any = {};
     if (this.searchProductNameInput !== '') {
       queryParams['searchProductName'] = this.searchProductNameInput;

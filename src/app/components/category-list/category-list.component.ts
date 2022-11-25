@@ -66,6 +66,8 @@ export class CategoryListComponent implements OnInit {
   getSelectedCategoryIdFromRoute() {
     // Observer design pattern
     this.activatedRoute.params.subscribe((params) => {
+      console.log(params);
+
       if (params['categoryId'] !== undefined) {
         this.selectedCategoryId = Number(params['categoryId']);
       }

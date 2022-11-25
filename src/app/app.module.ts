@@ -8,6 +8,7 @@ import { CategoryListComponent } from './components/category-list/category-list.
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,13 +17,10 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
     CategoryListComponent,
     ProductListComponent,
     HomePageComponent,
-    LoginPageComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    LoginPageComponent,
+  ], // HTML tarafındaki angular bileşenlerini tanımlar
+  imports: [BrowserModule, AppRoutingModule, FormsModule], // Angular modülleri import edeceğimiz yer
+  providers: [], // IoC Container'daki Dependency Injection'ları tanımlar
+  bootstrap: [AppComponent], // Hangi bileşenin ilk açıldığında çalışacağını belirtir
 })
-export class AppModule { }
+export class AppModule {}
