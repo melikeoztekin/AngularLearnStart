@@ -1,4 +1,16 @@
-<h1 class="display-6">{{ title }}</h1>
+<div class="d-flex">
+  <h1 class="display-6">{{ title }}</h1>
+  <div class="ms-3 d-flex align-items-center">
+    <input
+      type="text"
+      class="form-control"
+      id="searchProductNameInput"
+      placeholder="Search..."
+      (keyup)="onSearchProductNameChange($event)"
+    />
+    <!-- $event ilgili event'in özelliklerinin bulunduğu html tarafından geçilen js objesi angular tarafından geçilecektir. -->
+  </div>
+</div>
 <div class="row">
   <!--# Built-in Directive -->
 

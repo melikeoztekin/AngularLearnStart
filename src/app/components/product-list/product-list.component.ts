@@ -66,23 +66,32 @@ export class ProductListComponent implements OnInit {
     },
   ];
 
-  public selectedProductCategoryId: number | null = null;
+  selectedProductCategoryId: number | null = null;
+  searchProductNameInput: string | null = null;
   get filteredProducts(): any[] {
+    let filteredProducts = this.products;
     if (this.selectedProductCategoryId) {
-      return this.products.filter(
+      filteredProducts = filteredProducts.filter(
         (p) => p.categoryId === this.selectedProductCategoryId
       );
     }
-    return this.products;
+    if (this.searchProductNameInput) {
+      filteredProducts = filteredProducts.filter((p) =>
+        p.name
+          .toLowerCase()
+          .includes(this.searchProductNameInput?.toLowerCase())
+      );
+    }
+    return filteredProducts;
   }
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.getSelectedCategoryIdFromRoute();
+    this.getCategoryIdFromRoute();
   }
 
-  getSelectedCategoryIdFromRoute(): void {
+  getCategoryIdFromRoute(): void {
     this.activatedRoute.params.subscribe((params) => {
       if (params['categoryId']) {
         this.selectedProductCategoryId = parseInt(params['categoryId']);
@@ -94,5 +103,9 @@ export class ProductListComponent implements OnInit {
 
   isProductCardShow(product: any): boolean {
     return product.discontinued == false;
+  }
+
+  onSearchProductNameChange(event: any): void {
+    this.searchProductNameInput = event.target.value;
   }
 }
