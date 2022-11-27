@@ -85,8 +85,8 @@ export class ProductListComponent implements OnInit {
     return filteredProducts;
   }
 
-  //: ActivatedRoute mevcut route bilgisini almak için kullanılır.
-  //: Router yeni route bilgisi oluşturmak için kullanılır.
+  //# ActivatedRoute mevcut route bilgisini almak için kullanılır.
+  //# Router yeni route bilgisi oluşturmak için kullanılır.
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
@@ -134,7 +134,7 @@ export class ProductListComponent implements OnInit {
   }
 
   onSearchProductNameChange(event: any): void {
-    // this.searchProductNameInput = event.target.value; // ngModelimiz kendisi bu işlemi zaten gerçekleştirecek
+    // this.searchProductNameInput = event.target.value; //# ngModelimiz kendisi bu işlemi zaten gerçekleştirecek
     const queryParams: any = {};
     if (this.searchProductNameInput !== '') {
       queryParams['searchProductName'] = this.searchProductNameInput;

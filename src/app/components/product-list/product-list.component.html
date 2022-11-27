@@ -29,6 +29,7 @@
     <div
       *ngIf="isProductCardShow(product); else productDiscontinued"
       [class]="productCardClass"
+      style="width: 18rem"
     >
       <div class="card-body">
         <h5 class="card-title">{{ product.name }}</h5>
@@ -48,6 +49,7 @@
 
     <ng-template #productDiscontinued>
       <div
+        style="width: 18rem"
         class="{{
           productCardClass
         }} d-flex justify-content-center align-items-center"
