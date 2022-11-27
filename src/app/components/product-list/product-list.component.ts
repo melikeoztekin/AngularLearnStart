@@ -1,5 +1,7 @@
+import { ProductsService } from './../../services/productsService/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-product-list',
@@ -9,67 +11,25 @@ import { Component, OnInit } from '@angular/core';
 export class ProductListComponent implements OnInit {
   title: string = 'Product List';
   productCardClass: string = 'card col-3 ms-3 mb-3';
-  products: any[] = [
-    {
-      id: 1,
-      name: 'Chai',
-      categoryId: 1,
-      unitPrice: 18,
-      unitsInStock: 39,
-      quantityPerUnit: '10 boxes x 20 bags',
-      discontinued: false,
-    },
-    {
-      id: 2,
-      name: 'Chang',
-      categoryId: 1,
-      unitPrice: 19,
-      unitsInStock: 0,
-      quantityPerUnit: '24 - 12 oz bottles',
-      discontinued: true,
-    },
-    {
-      id: 3,
-      name: 'Aniseed Syrup',
-      categoryId: 3,
-      unitPrice: 10,
-      unitsInStock: 13,
-      quantityPerUnit: '12 - 550 ml bottles',
-      discontinued: false,
-    },
-    {
-      id: 4,
-      name: "Chef Anton's Cajun Seasoning",
-      categoryId: 3,
-      unitPrice: 22,
-      unitsInStock: 53,
-      quantityPerUnit: '48 - 6 oz jars',
-      discontinued: false,
-    },
-    {
-      id: 5,
-      name: "Chef Anton's Gumbo Mix",
-      categoryId: 2,
-      unitPrice: 21.35,
-      unitsInStock: 0,
-      quantityPerUnit: '36 boxes',
-      discontinued: false,
-    },
-    {
-      id: 6,
-      name: "Grandma's Boysenberry Spread",
-      categoryId: 2,
-      unitPrice: 25,
-      unitsInStock: 120,
-      quantityPerUnit: '12 - 8 oz jars',
-      discontinued: false,
-    },
-  ];
-
-  selectedProductCategoryId: number | null = null;
+  products!: Product[];
+  selectedProductCategoryId: number | null = 0;
   searchProductNameInput: string | null = null;
+  isLoading: boolean = false;
+
+  get productsListItems(): any[] {
+    return [
+      ...this.products.map((p) => {
+        return {
+          productName: p.name,
+          categoryId: p.categoryId,
+          discontinued: p.discontinued,
+        };
+      }),
+    ];
+  }
+
   get filteredProducts(): any[] {
-    let filteredProducts = this.products;
+    let filteredProducts = this.productsListItems;
     if (this.selectedProductCategoryId) {
       filteredProducts = filteredProducts.filter(
         (p) => p.categoryId === this.selectedProductCategoryId
@@ -77,7 +37,7 @@ export class ProductListComponent implements OnInit {
     }
     if (this.searchProductNameInput) {
       filteredProducts = filteredProducts.filter((p) =>
-        p.name
+        p.productName
           .toLowerCase()
           .includes(this.searchProductNameInput?.toLowerCase())
       );
@@ -87,11 +47,26 @@ export class ProductListComponent implements OnInit {
 
   //# ActivatedRoute mevcut route bilgisini almak için kullanılır.
   //# Router yeni route bilgisi oluşturmak için kullanılır.
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private productsService: ProductsService
+  ) {}
 
   ngOnInit(): void {
     this.getCategoryIdFromRoute();
     this.getSearchProductNameFromRoute();
+    this.getListProducts();
+  }
+
+  getListProducts() {
+    this.productsService.getList().subscribe((response) => {
+      //# setTimeout kullanmamızın sebebi localde çalıştığımız için veriler çok hızlı yüklenecektir. Spinner çalışma seklini görüntülemek için kullandık 1.5sn içinde ürünler görüntülenecektir.
+      setTimeout(() => {
+        this.products = response;
+        this.isLoading = true;
+      }, 1500);
+    });
   }
 
   getCategoryIdFromRoute(): void {

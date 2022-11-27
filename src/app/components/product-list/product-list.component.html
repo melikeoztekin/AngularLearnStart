@@ -1,6 +1,6 @@
-<div class="d-flex">
+<div>
   <h1 class="display-6">{{ title }}</h1>
-  <div class="ms-3 d-flex align-items-center">
+  <div class="my-3">
     <!-- One way binding (tek yönlü atama) -->
     <!-- Two way binding (en temel,klasik):event gerekir ve value değerini dinamik geçmek gerekir. -->
     <!-- Two Way Binding: [(ngModel)] ile input değerini bir state ile, iki yönlü olarak birbirine bağlayabiliriz value e gerek kalmadı-->
@@ -16,31 +16,58 @@
     <!-- $event ilgili event'in özelliklerinin bulunduğu html tarafından geçilen js objesi angular tarafından geçilecektir. -->
   </div>
 </div>
-<div class="row">
+
+<!-- ürünler yüklenirken spinner görüntüsü gelecektir. -->
+<div *ngIf="isLoading === false" class="spinner-icon">
+  <div class="spinner-border text-danger" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<!-- Ürünlerin yüklenme durumu gerçekleştiğinde görüntülenecek  -->
+<div *ngIf="isLoading === true" class="row">
   <!--# Built-in Directive -->
 
   <!--# ngFor is a built-in structural directive -->
   <!-- <div *ngFor="let product of products"> -->
 
+  <!-- arama yapıldığında ürün sayısı ile birlikte bilgi gelecek -->
+  <div
+    *ngIf="filteredProducts.length !== 0"
+    class="alert alert-success"
+    role="alert"
+  >
+    Şu an {{ filteredProducts.length }} adet ürün listelenmekte.
+  </div>
   <!--# Attribute directive  -->
-  <ng-template ngFor let-product [ngForOf]="filteredProducts">
+
+  <ng-template ngFor let-productListItem [ngForOf]="filteredProducts">
     <!-- Sanal, html tarafında render'lanmayan veya bir etikete karşılık gelmeyen bir etiket olacak -->
     <!--# *ngIf  -->
+
+    <!-- kategori seçildiğinde veya ürünler ilk yüklendiğinde eğer ürün yoksa uyarı çıkar. -->
     <div
-      *ngIf="isProductCardShow(product); else productDiscontinued"
+      *ngIf="productListItem.length === 0"
+      class="alert alert-warning"
+      role="alert"
+    >
+      Aramanızla eşleşen ürün bulunamadı.
+    </div>
+    <div
+      *ngIf="isProductCardShow(productListItem); else productDiscontinued"
       [class]="productCardClass"
       style="width: 18rem"
     >
       <div class="card-body">
-        <h5 class="card-title">{{ product.name }}</h5>
+        <h5 class="card-title">{{ productListItem.productName }}</h5>
         <p>
-          <small> categoryId: {{ product.categoryId }}</small>
+          <small> categoryId: {{ productListItem.categoryId }}</small>
         </p>
         <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem,
+          magnam.
         </p>
-        <a href="#" class="btn btn-primary">Add to cart</a>
+        <a href="#" class="btn btn-dark">Add to cart</a>
       </div>
     </div>
     <!-- Satılan ürünlerin listesi -->
@@ -54,9 +81,20 @@
           productCardClass
         }} d-flex justify-content-center align-items-center"
       >
-        <p>{{ product.name }} isimli ürün şuan satılmıyor</p>
+        <p>
+          <strong>{{ productListItem.productName }}</strong> isimli ürün şuan
+          satılmıyor
+        </p>
       </div>
     </ng-template>
     <!-- satılmayan ürünlerin bilgisi -->
   </ng-template>
+
+  <div
+    *ngIf="filteredProducts.length == 0"
+    class="alert alert-danger"
+    role="alert"
+  >
+    Aramanızla eşleşen ürün bulunmamakta.
+  </div>
 </div>
