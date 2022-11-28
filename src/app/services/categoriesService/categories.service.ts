@@ -1,3 +1,4 @@
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,10 +9,15 @@ import { Category } from '../../models/category';
   providedIn: 'root',
 })
 export class CategoriesService {
+  controllerUrl: string = `${environment.apiUrl}/categories`; //* Magic String
   constructor(private httpClient: HttpClient) {}
 
   //# Generic, bir class'ın/metodun içerisnde kullanılacak tipi/tipleri belirlemek için kullanılır.
   getList(): Observable<Category[]> {
-    return this.httpClient.get<Category[]>('http://localhost:3000/categories');
+    return this.httpClient.get<Category[]>(this.controllerUrl);
+  }
+
+  getById(id: number): Observable<Category> {
+    return this.httpClient.get<Category>(`${this.controllerUrl}/${id}`);
   }
 }
