@@ -16,30 +16,19 @@ export class ProductListComponent implements OnInit {
   searchProductNameInput: string | null = null;
   isLoading: boolean = false;
 
-  get productsListItems(): any[] {
-    return [
-      ...this.products.map((p) => {
-        return {
-          productName: p.name,
-          categoryId: p.categoryId,
-          discontinued: p.discontinued,
-        };
-      }),
-    ];
-  }
-
-  get filteredProducts(): any[] {
-    let filteredProducts = this.productsListItems;
+  get filteredProducts(): Product[] {
+    let filteredProducts = this.products;
     if (this.selectedProductCategoryId) {
       filteredProducts = filteredProducts.filter(
         (p) => p.categoryId === this.selectedProductCategoryId
       );
     }
     if (this.searchProductNameInput) {
-      filteredProducts = filteredProducts.filter((p) =>
-        p.productName
-          .toLowerCase()
-          .includes(this.searchProductNameInput?.toLowerCase())
+      filteredProducts = filteredProducts.filter(
+        (p) =>
+          p.name
+            .toLowerCase()
+            .includes(this.searchProductNameInput!.toLowerCase()) //#Non-null assertion operator :Sol tarafın null veya undefined olmadığı garanti edilir.
       );
     }
     return filteredProducts;
@@ -104,7 +93,7 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  isProductCardShow(product: any): boolean {
+  isProductCardShow(product: Product): boolean {
     return product.discontinued == false;
   }
 
