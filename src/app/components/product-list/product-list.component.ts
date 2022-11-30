@@ -1,3 +1,5 @@
+import { Pagination } from './../../models/pagination';
+import { GetListOptionsType } from './../../models/get-list-options';
 import { ProductsService } from './../../services/productsService/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -12,11 +14,18 @@ export class ProductListComponent implements OnInit {
   title: string = 'Product List';
   productCardClass: string = 'card col-3 ms-3 mb-3';
   products!: Product[];
-  selectedProductCategoryId: number | null = 0;
+  // selectedProductCategoryId: number | null = null;
   searchProductNameInput: string | null = null;
+  pagination: Pagination = {
+    page: 1,
+    pageSize: 12,
+  };
+  lastPage!: number;
+  filters: any = {};
   isLoading: boolean = false;
 
-  get filteredProducts(): Product[] {
+  //# Client Side Filter
+  /* get filteredProducts(): Product[] {
     let filteredProducts = this.products;
     if (this.selectedProductCategoryId) {
       filteredProducts = filteredProducts.filter(
@@ -32,7 +41,7 @@ export class ProductListComponent implements OnInit {
       );
     }
     return filteredProducts;
-  }
+  } */
 
   //# ActivatedRoute mevcut route bilgisini almak için kullanılır.
   //# Router yeni route bilgisi oluşturmak için kullanılır.
@@ -45,14 +54,25 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.getCategoryIdFromRoute();
     this.getSearchProductNameFromRoute();
-    this.getListProducts();
   }
 
-  getListProducts() {
-    this.productsService.getList().subscribe((response) => {
+  getListProducts(options?: GetListOptionsType): void {
+    this.productsService.getList(options).subscribe((response) => {
       //# setTimeout kullanmamızın sebebi localde çalıştığımız için veriler çok hızlı yüklenecektir. Spinner çalışma seklini görüntülemek için kullandık 1.5sn içinde ürünler görüntülenecektir.
       setTimeout(() => {
-        this.products = response;
+        //# Etiya projelerinde pagination bilgileri body içerisinde gelmektedir. Direkt atamayı gerçekleştirebiliriz.
+        // this.pagination.page = response.page;
+        // this.pagination.pageSize = response.pageSize;
+        // this.lastPage = response.lastPage;
+        //# Json-server projelerinde pagination bilgileri header içerisinde gelmektedir. Header üzerinden atama yapmamız gerekmektedir. Bu yöntem pek kullanılmayacağı için, bu şekilde geçici bir çözüm ekleyebiliriz.
+        if (response.length < this.pagination.pageSize) {
+          if (response.length === 0)
+            this.pagination.page = this.pagination.page - 1;
+          this.lastPage = this.pagination.page;
+        }
+        if (response.length > 0) {
+          this.products = response;
+        }
         this.isLoading = true;
       }, 1500);
     });
@@ -61,13 +81,22 @@ export class ProductListComponent implements OnInit {
   getCategoryIdFromRoute(): void {
     //# route params'ları almak adına activatedRoute.params kullanılır
     this.activatedRoute.params.subscribe((params) => {
-      console.log(params);
+      this.pagination.page = 1;
 
       if (params['categoryId']) {
-        this.selectedProductCategoryId = parseInt(params['categoryId']);
+        // this.selectedProductCategoryId = parseInt(params['categoryId']);
+        this.filters['categoryId'] = parseInt(params['categoryId']);
       } else {
-        this.selectedProductCategoryId = null;
+        // this.selectedProductCategoryId = null;
+        // filters={categoryId:1}
+        if (this.filters['categoryId']) delete this.filters['categoryId']; // filters={}
+        //# delete operatörü, object içerisindeki bir property'i silmek için kullanılır.
       }
+
+      this.getListProducts({
+        pagination: this.pagination,
+        filters: this.filters,
+      });
     });
   }
 
@@ -106,5 +135,13 @@ export class ProductListComponent implements OnInit {
         queryParams: queryParams,
       });
     }
+  }
+
+  changePage(page: number): void {
+    this.pagination.page = page;
+    this.getListProducts({
+      pagination: this.pagination,
+      filters: this.filters,
+    });
   }
 }

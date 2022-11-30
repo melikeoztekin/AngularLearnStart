@@ -18,28 +18,25 @@
 </div>
 
 <!-- ürünler yüklenirken spinner görüntüsü gelecektir. -->
-<div *ngIf="isLoading === false" class="spinner-icon">
-  <app-loading-spinner></app-loading-spinner>
-</div>
+<ng-template #loadingSpinner>
+  <div class="spinner-icon">
+    <app-loading-spinner></app-loading-spinner></div
+></ng-template>
 
 <!-- Ürünlerin yüklenme durumu gerçekleştiğinde görüntülenecek  -->
-<div *ngIf="isLoading === true" class="row">
+<div *ngIf="isLoading === true; else loadingSpinner" class="row">
   <!--# Built-in Directive -->
 
   <!--# ngFor is a built-in structural directive -->
   <!-- <div *ngFor="let product of products"> -->
 
   <!-- arama yapıldığında ürün sayısı ile birlikte bilgi gelecek -->
-  <div
-    *ngIf="filteredProducts.length !== 0"
-    class="alert alert-success"
-    role="alert"
-  >
-    Şu an {{ filteredProducts.length }} adet ürün listelenmekte.
+  <div *ngIf="products.length !== 0" class="alert alert-success" role="alert">
+    Şu an {{ products.length }} adet ürün listelenmekte.
   </div>
   <!--# Attribute directive  -->
 
-  <ng-template ngFor let-product [ngForOf]="filteredProducts">
+  <ng-template ngFor let-product [ngForOf]="products">
     <!-- Sanal, html tarafında render'lanmayan veya bir etikete karşılık gelmeyen bir etiket olacak -->
 
     <!--# *ngIf  -->
@@ -84,11 +81,28 @@
     <!-- satılmayan ürünlerin bilgisi -->
   </ng-template>
 
-  <div
-    *ngIf="filteredProducts.length == 0"
-    class="alert alert-danger"
-    role="alert"
-  >
+  <div *ngIf="products.length == 0" class="alert alert-danger" role="alert">
     Aramanızla eşleşen ürün bulunmamakta.
   </div>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [ngClass]="{ disabled: pagination.page == 1 }">
+        <button (click)="changePage(pagination.page - 1)" class="page-link">
+          Previous
+        </button>
+      </li>
+      <li class="page-item">
+        <button class="page-link">{{ pagination.page }}</button>
+      </li>
+      <li
+        class="page-item"
+        [ngClass]="{ disabled: pagination.page == lastPage }"
+      >
+        <button (click)="changePage(pagination.page + 1)" class="page-link">
+          Next
+        </button>
+      </li>
+    </ul>
+  </nav>
 </div>
