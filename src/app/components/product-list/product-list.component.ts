@@ -66,20 +66,18 @@ export class ProductListComponent implements OnInit {
         // this.lastPage = response.lastPage;
         //# Json-server projelerinde pagination bilgileri header içerisinde gelmektedir. Header üzerinden atama yapmamız gerekmektedir. Bu yöntem pek kullanılmayacağı için, bu şekilde geçici bir çözüm ekleyebiliriz.
         if (response.length < this.pagination.pageSize) {
-          if (response.length === 0)
+          if (response.length === 0 && this.pagination.page > 1)
             this.pagination.page = this.pagination.page - 1;
           this.lastPage = this.pagination.page;
-          this.products = response;
         }
-        if (response.length > 0) {
-          this.products = response;
-        }
+        this.products = response;
         this.isLoading = true;
       }, 1500);
     });
   }
 
   getCategoryIdFromRoute(): void {
+    this.isLoading = true;
     //# route params'ları almak adına activatedRoute.params kullanılır
     this.activatedRoute.params.subscribe((params) => {
       this.resetPagination();
@@ -92,29 +90,43 @@ export class ProductListComponent implements OnInit {
         if (this.filters['categoryId']) delete this.filters['categoryId']; // filters={}
         //# delete operatörü, object içerisindeki bir property'i silmek için kullanılır.
       }
-
-      this.getListProducts({
-        pagination: this.pagination,
-        filters: this.filters,
-      });
+      this.isLoading = false;
+      if (this.isLoading === false) {
+        this.getListProducts({
+          pagination: this.pagination,
+          filters: this.filters,
+        });
+      }
     });
   }
 
   getSearchProductNameFromRoute(): void {
+    this.isLoading = true;
     //# query params'ları almak adına activatedRoute.queryParams kullanılır
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       // && this.searchProductNameInput==null
       if (
         queryParams['searchProductName'] &&
         queryParams['searchProductName'] !== this.searchProductNameInput
-      )
+      ) {
         this.searchProductNameInput = queryParams['searchProductName'];
+        this.filters['name_like'] = this.searchProductNameInput;
+      }
       //# Defensive Programming
       if (
         !queryParams['searchProductName'] &&
         this.searchProductNameInput !== null
-      )
+      ) {
         this.searchProductNameInput = null;
+        delete this.filters['name_input'];
+      }
+      this.isLoading = false;
+      if (this.isLoading == false) {
+        this.getListProducts({
+          pagination: this.pagination,
+          filters: this.filters,
+        });
+      }
     });
   }
 
