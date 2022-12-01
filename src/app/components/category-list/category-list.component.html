@@ -14,14 +14,11 @@
   </button> -->
   <button
     *ngFor="let categoryListItem of categoriesListItems"
-    [routerLink]="
-      categoryListItem.value === null
-        ? '/'
-        : '/category/' + categoryListItem.value
-    "
+    (click)="onSelectedCategory(categoryListItem.value)"
     class="list-group-item text-start"
     [ngClass]="{ active: isSelectedCategory(categoryListItem.value) }"
   >
+    <!-- [routerLink]="categoryListItem.value === null? '/': '/category/' + categoryListItem.value" -->
     <!-- (click)="onSelectedCategory(categoryListItem.value)" -->
 
     <!-- [routerLink]="'category/' + category.id" veya [routerLink]="['category', category.id]" de olabilir. -->

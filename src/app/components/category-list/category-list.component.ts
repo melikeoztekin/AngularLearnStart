@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService } from '../../services/categoriesService/categories.service';
 import { Category } from './../../models/category';
 
@@ -20,6 +20,9 @@ export class CategoryListComponent implements OnInit {
 
   //# Getter
   get categoriesListItems(): any[] {
+    if (this.categories === undefined) {
+      return this._categoriesListItems;
+    }
     //# property
     return [
       ...this._categoriesListItems,
@@ -47,6 +50,7 @@ export class CategoryListComponent implements OnInit {
   //# Dependency Injection, IoC container'ın içerisindeki referanları kullanmamızı sağlayan bir mekanizmadır.
   constructor(
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private categoriesService: CategoriesService
   ) {
     //# constructor class oluşturulduğu an çalışır
@@ -78,24 +82,36 @@ export class CategoryListComponent implements OnInit {
     }); //# callback
   }
 
-  // onSelectedCategory(categoryId: number | null): void {
-  // if (category === null) this.selectedCategoryId = null;
-  // else this.selectedCategoryId = category.id;
-  //# yerine
+  onSelectedCategory(categoryId: number | null): void {
+    // if (category === null) this.selectedCategoryId = null;
+    // else this.selectedCategoryId = category.id;
+    //# yerine
 
-  //# Debugging
-  // debugger; // breakpoint. Uygulama çalışma anında bu satıra gelince duracak ve adım adım takip edebileceğimiz bir panel açılacak
+    //# Debugging
+    // debugger; // breakpoint. Uygulama çalışma anında bu satıra gelince duracak ve adım adım takip edebileceğimiz bir panel açılacak
 
-  //# ternary operator kullanabiliriz
-  // this.selectedCategoryId = category === null ? null : category.id;
+    //# ternary operator kullanabiliriz
+    // this.selectedCategoryId = category === null ? null : category.id;
 
-  //# optional chaining operator
-  //# object?.id dediğimiz zaman, object null değilse ve id'e ulaşabiliyorsa idsini alır, null ise null döner
+    //# optional chaining operator
+    //# object?.id dediğimiz zaman, object null değilse ve id'e ulaşabiliyorsa idsini alır, null ise null döner
 
-  //# nullish coalescing operator
-  //# ?? operatörü ile sol taraf false (null, undefined, 0, "") ise sağ tarafı atar
-  // this.selectedCategoryId = categoryId ?? null;
-  // }
+    //# nullish coalescing operator
+    //# ?? operatörü ile sol taraf false (null, undefined, 0, "") ise sağ tarafı atar
+    // this.selectedCategoryId = categoryId ?? null; //# getSelectedCategoryIdFromRoute() methodu ile aynı işi yapıyor.
+
+    // let routeById="/";
+    // if(this.selectedCategoryById!==null) routeByUrl+="categories/"+this.selectedCategoryId;
+    // this.router.navigateByUrl(routeByUrl,{queryParams:})
+
+    const route = ['/'];
+    if (categoryId !== null) {
+      route.push('category', categoryId!.toString());
+    }
+    this.activatedRoute.queryParams.subscribe((queryParams) => {
+      this.router.navigate(route, { queryParams: queryParams }); //# queryParams: queryParams
+    });
+  }
 
   isSelectedCategory(categoryId: number | null): boolean {
     return categoryId === this.selectedCategoryId;
