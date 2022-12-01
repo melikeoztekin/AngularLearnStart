@@ -9,8 +9,8 @@
       class="form-control"
       id="searchProductNameInput"
       placeholder="Search..."
-      (keyup)="onSearchProductNameChange($event)"
-      [(ngModel)]="filters['name_like']"
+      (change)="onSearchProductNameChange($event)"
+      [(ngModel)]="searchProductNameInput"
     />
     <!-- [value]="searchProductNameInput" -->
     <!-- $event ilgili event'in özelliklerinin bulunduğu html tarafından geçilen js objesi angular tarafından geçilecektir. -->

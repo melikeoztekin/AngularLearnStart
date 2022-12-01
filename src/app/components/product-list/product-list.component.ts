@@ -82,8 +82,7 @@ export class ProductListComponent implements OnInit {
   getCategoryIdFromRoute(): void {
     //# route params'ları almak adına activatedRoute.params kullanılır
     this.activatedRoute.params.subscribe((params) => {
-      this.pagination.page = 1;
-      this.lastPage = undefined;
+      this.resetPagination();
       if (params['categoryId']) {
         // this.selectedProductCategoryId = parseInt(params['categoryId']);
         this.filters['categoryId'] = parseInt(params['categoryId']);
@@ -105,18 +104,17 @@ export class ProductListComponent implements OnInit {
     //# query params'ları almak adına activatedRoute.queryParams kullanılır
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       // && this.searchProductNameInput==null
-      if (queryParams['name_like']) {
-        this.filters['name_like'] = queryParams['name_like'];
-      } else {
-        if (this.filters['name_like']) {
-          delete this.filters['name_like'];
-        }
-      }
-      this.getListProducts({
-        pagination: this.pagination,
-        filters: this.filters,
-      });
-      this.pagination.page = 1;
+      if (
+        queryParams['searchProductName'] &&
+        queryParams['searchProductName'] !== this.searchProductNameInput
+      )
+        this.searchProductNameInput = queryParams['searchProductName'];
+      //# Defensive Programming
+      if (
+        !queryParams['searchProductName'] &&
+        this.searchProductNameInput !== null
+      )
+        this.searchProductNameInput = null;
     });
   }
 
@@ -129,12 +127,19 @@ export class ProductListComponent implements OnInit {
     let queryParams: any = {};
     console.log(this.filters);
 
-    if (this.filters['name_like'] !== '') {
-      queryParams['name_like'] = this.filters['name_like'];
+    if (this.searchProductNameInput !== '') {
+      queryParams['searchProductName'] = this.searchProductNameInput;
       this.router.navigate([], {
         queryParams: queryParams,
       });
     }
+
+    this.filters['name_like'] = this.searchProductNameInput;
+    this.resetPagination();
+    this.getListProducts({
+      pagination: this.pagination,
+      filters: this.filters,
+    });
   }
 
   changePage(page: number): void {
@@ -143,5 +148,10 @@ export class ProductListComponent implements OnInit {
       pagination: this.pagination,
       filters: this.filters,
     });
+  }
+
+  resetPagination(): void {
+    this.pagination.page = 1;
+    this.lastPage = undefined;
   }
 }
