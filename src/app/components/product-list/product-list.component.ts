@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
     page: 1,
     pageSize: 12,
   };
-  lastPage!: number;
+  lastPage?: number;
   filters: any = {};
   isLoading: boolean = false;
 
@@ -69,6 +69,7 @@ export class ProductListComponent implements OnInit {
           if (response.length === 0)
             this.pagination.page = this.pagination.page - 1;
           this.lastPage = this.pagination.page;
+          this.products = response;
         }
         if (response.length > 0) {
           this.products = response;
@@ -82,7 +83,7 @@ export class ProductListComponent implements OnInit {
     //# route params'ları almak adına activatedRoute.params kullanılır
     this.activatedRoute.params.subscribe((params) => {
       this.pagination.page = 1;
-
+      this.lastPage = undefined;
       if (params['categoryId']) {
         // this.selectedProductCategoryId = parseInt(params['categoryId']);
         this.filters['categoryId'] = parseInt(params['categoryId']);
