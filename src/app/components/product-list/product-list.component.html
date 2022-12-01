@@ -10,7 +10,7 @@
       id="searchProductNameInput"
       placeholder="Search..."
       (keyup)="onSearchProductNameChange($event)"
-      [(ngModel)]="searchProductNameInput"
+      [(ngModel)]="filters['name_like']"
     />
     <!-- [value]="searchProductNameInput" -->
     <!-- $event ilgili event'in özelliklerinin bulunduğu html tarafından geçilen js objesi angular tarafından geçilecektir. -->
@@ -81,7 +81,7 @@
     <!-- satılmayan ürünlerin bilgisi -->
   </ng-template>
 
-  <div *ngIf="products.length == 0" class="alert alert-danger" role="alert">
+  <div *ngIf="products.length === 0" class="alert alert-danger" role="alert">
     Aramanızla eşleşen ürün bulunmamakta.
   </div>
 

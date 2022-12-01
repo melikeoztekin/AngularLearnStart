@@ -103,22 +103,19 @@ export class ProductListComponent implements OnInit {
   getSearchProductNameFromRoute(): void {
     //# query params'ları almak adına activatedRoute.queryParams kullanılır
     this.activatedRoute.queryParams.subscribe((queryParams) => {
-      console.log(queryParams);
-
       // && this.searchProductNameInput==null
-      if (
-        queryParams['searchProductName'] &&
-        queryParams['searchProductName'] !== this.searchProductNameInput
-      ) {
-        this.searchProductNameInput = queryParams['searchProductName'];
+      if (queryParams['name_like']) {
+        this.filters['name_like'] = queryParams['name_like'];
+      } else {
+        if (this.filters['name_like']) {
+          delete this.filters['name_like'];
+        }
       }
-      //# Defensive Programing
-      if (
-        !queryParams['searchProductName'] &&
-        this.searchProductNameInput !== null
-      ) {
-        this.searchProductNameInput = null;
-      }
+      this.getListProducts({
+        pagination: this.pagination,
+        filters: this.filters,
+      });
+      this.pagination.page = 1;
     });
   }
 
@@ -128,9 +125,11 @@ export class ProductListComponent implements OnInit {
 
   onSearchProductNameChange(event: any): void {
     // this.searchProductNameInput = event.target.value; //# ngModelimiz kendisi bu işlemi zaten gerçekleştirecek
-    const queryParams: any = {};
-    if (this.searchProductNameInput !== '') {
-      queryParams['searchProductName'] = this.searchProductNameInput;
+    let queryParams: any = {};
+    console.log(this.filters);
+
+    if (this.filters['name_like'] !== '') {
+      queryParams['name_like'] = this.filters['name_like'];
       this.router.navigate([], {
         queryParams: queryParams,
       });
