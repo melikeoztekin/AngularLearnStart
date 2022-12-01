@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,8 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
+import { ProductFormPageComponent } from './pages/product-form-page/product-form-page.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,16 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     HomePageComponent,
     LoginPageComponent,
     LoadingSpinnerComponent,
+    ProductFormComponent,
+    ProductFormPageComponent,
   ], // HTML tarafındaki angular bileşenlerini tanımlar
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule], // Angular modülleri import edeceğimiz yer
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ], // Angular modülleri import edeceğimiz yer
   providers: [], // IoC Container'daki Dependency Injection'ları tanımlar
   bootstrap: [AppComponent], // Hangi bileşenin ilk açıldığında çalışacağını belirtir
 })

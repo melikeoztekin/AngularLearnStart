@@ -1,0 +1,24 @@
+<h1 class="display-6">{{ title }}</h1>
+
+<!-- Reactive form -->
+<form [formGroup]="productForm">
+  <div class="mb-3">
+    <label for="nameInput" class="form-label">Name</label>
+    <input
+      type="text"
+      id="nameInput"
+      class="form-control"
+      placeholder="Enter product name"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="categoryInput" class="form-label">Category Id</label>
+    <input
+      type="number"
+      id="categoryInput"
+      class="form-control"
+      placeholder="Enter category id"
+    />
+  </div>
+  <!-- TODO Selecet Manu ile category'leri opsiyonlar olarak listlemek ve seçtiği category'in id'sini kaydetmek -->
+</form>

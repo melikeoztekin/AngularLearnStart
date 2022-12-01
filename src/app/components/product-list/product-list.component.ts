@@ -118,7 +118,7 @@ export class ProductListComponent implements OnInit {
         this.searchProductNameInput !== null
       ) {
         this.searchProductNameInput = null;
-        delete this.filters['name_input'];
+        delete this.filters['name_like'];
       }
       this.isLoading = false;
       if (this.isLoading == false) {
