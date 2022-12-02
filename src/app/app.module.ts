@@ -15,6 +15,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ProductFormPageComponent } from './pages/product-form-page/product-form-page.component';
+import { DashboardProductsPageComponent } from './pages/dashboard-products-page/dashboard-products-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { ProductFormPageComponent } from './pages/product-form-page/product-form
     LoadingSpinnerComponent,
     ProductFormComponent,
     ProductFormPageComponent,
+    DashboardProductsPageComponent,
   ], // HTML tarafındaki angular bileşenlerini tanımlar
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { DashboardProductsPageComponent } from './pages/dashboard-products-page/dashboard-products-page.component';
 import { ProductFormPageComponent } from './pages/product-form-page/product-form-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,6 +15,11 @@ const routes: Routes = [
       {
         path: 'products', //# parent route
         children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            component: DashboardProductsPageComponent,
+          },
           { path: 'add', component: ProductFormPageComponent },
           { path: 'edit/:productId', component: ProductFormPageComponent },
         ], //# dashboard/products children route
