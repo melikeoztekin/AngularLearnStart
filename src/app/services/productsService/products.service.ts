@@ -1,9 +1,9 @@
+import { Product } from './../../models/product';
 import { GetListOptionsType } from './../../models/get-list-options';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Pagination } from 'src/app/models/pagination';
-import { Product } from 'src/app/models/product';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -30,5 +30,9 @@ export class ProductsService {
       params: queryParams,
     });
     // observe: 'response', //: Http Response tipini döndürür. (response.headers, response.body, response.status)
+  }
+
+  add(request: Product): Observable<Product> {
+    return this.httpClient.post<Product>(this.controllerUrl, request);
   }
 }

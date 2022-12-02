@@ -1,20 +1,23 @@
-<div>
+<div class="d-flex align-items-center justify-content-between">
   <h1 class="display-6">{{ title }}</h1>
-  <div class="my-3">
-    <!-- One way binding (tek yönlü atama) -->
-    <!-- Two way binding (en temel,klasik):event gerekir ve value değerini dinamik geçmek gerekir. -->
-    <!-- Two Way Binding: [(ngModel)] ile input değerini bir state ile, iki yönlü olarak birbirine bağlayabiliriz value e gerek kalmadı-->
-    <input
-      type="text"
-      class="form-control"
-      id="searchProductNameInput"
-      placeholder="Search..."
-      (change)="onSearchProductNameChange($event)"
-      [(ngModel)]="searchProductNameInput"
-    />
-    <!-- [value]="searchProductNameInput" -->
-    <!-- $event ilgili event'in özelliklerinin bulunduğu html tarafından geçilen js objesi angular tarafından geçilecektir. -->
-  </div>
+  <button routerLink="dashboard/products/add" class="btn btn-dark">
+    Add Product
+  </button>
+</div>
+<div class="my-3">
+  <!-- One way binding (tek yönlü atama) -->
+  <!-- Two way binding (en temel,klasik):event gerekir ve value değerini dinamik geçmek gerekir. -->
+  <!-- Two Way Binding: [(ngModel)] ile input değerini bir state ile, iki yönlü olarak birbirine bağlayabiliriz value e gerek kalmadı-->
+  <input
+    type="text"
+    class="form-control"
+    id="searchProductNameInput"
+    placeholder="Search..."
+    (change)="onSearchProductNameChange($event)"
+    [(ngModel)]="searchProductNameInput"
+  />
+  <!-- [value]="searchProductNameInput" -->
+  <!-- $event ilgili event'in özelliklerinin bulunduğu html tarafından geçilen js objesi angular tarafından geçilecektir. -->
 </div>
 
 <!-- ürünler yüklenirken spinner görüntüsü gelecektir. -->
