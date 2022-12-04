@@ -11,6 +11,7 @@ export class DashboardProductsListComponent implements OnInit {
   title: string = 'Products List Dashboard';
   products!: Product[];
   searchProductNameInput: string | null = null;
+  isLoading: boolean = false;
 
   constructor(private productsService: ProductsService) {}
 
@@ -20,11 +21,15 @@ export class DashboardProductsListComponent implements OnInit {
 
   getProductsList(): void {
     this.productsService.getList().subscribe((response) => {
-      this.products = response;
+      setTimeout(() => {
+        this.products = response;
+        this.isLoading = true;
+      }, 1500);
     });
   }
 
   get filteredProducts(): any[] {
+    this.isLoading = true;
     let filteredProducts = this.products;
     if (this.searchProductNameInput) {
       filteredProducts = filteredProducts.filter((p) =>

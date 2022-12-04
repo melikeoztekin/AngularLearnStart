@@ -27,59 +27,80 @@
     </li>
   </ul>
 </div> -->
-<table class="table">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Supplier Id</th>
-      <th>Category Id</th>
-      <th>Quantity Per Unite</th>
-      <th>Unit Price</th>
-      <th>Units In Stock</th>
-      <th>Units On Order</th>
-      <th>Reorder Level</th>
-      <th>Discontinued</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody class="table-group-divider">
-    <ng-template ngFor let-product [ngForOf]="filteredProducts">
+<ng-template #loadingSpinner>
+  <div class="spinner-icon">
+    <app-loading-spinner></app-loading-spinner></div
+></ng-template>
+
+<div *ngIf="isLoading === true; else loadingSpinner">
+  <ng-template #productNotFound>
+    <div class="alert alert-danger" role="alert">Hiç ürün bulunamadı.</div>
+  </ng-template>
+  <div
+    *ngIf="
+      products.length !== 0 && filteredProducts.length !== 0;
+      else productNotFound
+    "
+    class="alert alert-success"
+    role="alert"
+  >
+    Şu an {{ filteredProducts.length }} adet ürün listelenmekte.
+  </div>
+
+  <table class="table">
+    <thead>
       <tr>
-        <th>{{ product.id }}</th>
-        <td>{{ product.name }}</td>
-        <td>{{ product.supplierId }}</td>
-        <td>{{ product.categoryId }}</td>
-        <td>{{ product.quantityPerUnit }}</td>
-        <td>{{ product.unitPrice }}</td>
-        <td>{{ product.unitsInStock }}</td>
-        <td>{{ product.unitsOnOrder }}</td>
-        <td>{{ product.reorderLevel }}</td>
-        <td>
-          <ng-template #checkValid
-            ><input
+        <th>Id</th>
+        <th>Name</th>
+        <th>Supplier Id</th>
+        <th>Category Id</th>
+        <th>Quantity Per Unite</th>
+        <th>Unit Price</th>
+        <th>Units In Stock</th>
+        <th>Units On Order</th>
+        <th>Reorder Level</th>
+        <th>Discontinued</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <ng-template ngFor let-product [ngForOf]="filteredProducts">
+        <tr>
+          <th>{{ product.id }}</th>
+          <td>{{ product.name }}</td>
+          <td>{{ product.supplierId }}</td>
+          <td>{{ product.categoryId }}</td>
+          <td>{{ product.quantityPerUnit }}</td>
+          <td>{{ product.unitPrice }}</td>
+          <td>{{ product.unitsInStock }}</td>
+          <td>{{ product.unitsOnOrder }}</td>
+          <td>{{ product.reorderLevel }}</td>
+          <td>
+            <ng-template #checkValid
+              ><input
+                class="form-check-input"
+                type="checkbox"
+                id="flexCheckChecked"
+                checked
+            /></ng-template>
+            <input
+              *ngIf="product.discontinued === false; else checkValid"
               class="form-check-input"
               type="checkbox"
               id="flexCheckChecked"
-              checked
-          /></ng-template>
-          <input
-            *ngIf="product.discontinued === false; else checkValid"
-            class="form-check-input"
-            type="checkbox"
-            id="flexCheckChecked"
-          />
-        </td>
-        <td>
-          <button
-            class="btn btn-dark"
-            routerLink="edit/{{ product.id }}"
-            title="edit product"
-          >
-            <i class="fa-solid fa-pencil"></i>
-          </button>
-        </td>
-      </tr>
-    </ng-template>
-  </tbody>
-</table>
+            />
+          </td>
+          <td>
+            <button
+              class="btn btn-dark"
+              routerLink="edit/{{ product.id }}"
+              title="edit product"
+            >
+              <i class="fa-solid fa-pencil"></i>
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>
