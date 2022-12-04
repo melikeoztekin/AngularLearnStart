@@ -1,0 +1,63 @@
+<div class="d-flex align-items-center justify-content-between">
+  <h1 class="display-6">{{ title }}</h1>
+  <button class="btn btn-dark" routerLink="add">New Category</button>
+</div>
+<div class="my-3">
+  <input
+    type="text"
+    class="form-control"
+    id="searchCategoryNameInput"
+    placeholder="Search..."
+    (keyup)="onSearchCategoryNameChange($event)"
+  />
+</div>
+
+<ng-template #loadingSpinner>
+  <div class="spinner-icon">
+    <app-loading-spinner></app-loading-spinner></div
+></ng-template>
+
+<div *ngIf="isLoading === true; else loadingSpinner">
+  <ng-template #categoryNotFound>
+    <div class="alert alert-danger" role="alert">Hiç kategori bulunamadı.</div>
+  </ng-template>
+  <div
+    *ngIf="
+      categories.length !== 0 && filteredCategories.length !== 0;
+      else categoryNotFound
+    "
+    class="alert alert-success"
+    role="alert"
+  >
+    Şu an {{ filteredCategories.length }} adet kategori listelenmekte.
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <ng-template ngFor let-category [ngForOf]="filteredCategories">
+        <tr>
+          <th>{{ category.id }}</th>
+          <td>{{ category.name }}</td>
+          <td>{{ category.description }}</td>
+          <td>
+            <button
+              class="btn btn-dark"
+              routerLink="edit/{{ category.id }}"
+              title="edit category"
+            >
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

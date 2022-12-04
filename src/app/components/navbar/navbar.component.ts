@@ -22,5 +22,10 @@ export class NavbarComponent {
       routerLink: '/dashboard/products',
       isRouterActiveExact: false,
     },
+    {
+      label: 'Category Dashboard',
+      routerLink: '/dashboard/categories',
+      isRouterActiveExact: false,
+    },
   ];
 }

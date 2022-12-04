@@ -17,6 +17,10 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 import { ProductFormPageComponent } from './pages/product-form-page/product-form-page.component';
 import { DashboardProductsPageComponent } from './pages/dashboard-products-page/dashboard-products-page.component';
 import { DashboardProductsListComponent } from './components/dashboard-products-list/dashboard-products-list.component';
+import { DashboardCategoriesPageComponent } from './pages/dashboard-categories-page/dashboard-categories-page.component';
+import { DashboardCategoriesListComponent } from './components/dashboard-categories-list/dashboard-categories-list.component';
+import { CategoryFormPageComponent } from './pages/category-form-page/category-form-page.component';
+import { CategoryFormComponent } from './components/category-form/category-form.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,10 @@ import { DashboardProductsListComponent } from './components/dashboard-products-
     ProductFormPageComponent,
     DashboardProductsPageComponent,
     DashboardProductsListComponent,
+    DashboardCategoriesPageComponent,
+    DashboardCategoriesListComponent,
+    CategoryFormPageComponent,
+    CategoryFormComponent,
   ], // HTML tarafındaki angular bileşenlerini tanımlar
   imports: [
     BrowserModule,
