@@ -1,8 +1,5 @@
 <div class="d-flex align-items-center justify-content-between">
   <h1 class="display-6">{{ title }}</h1>
-  <button routerLink="dashboard/products/add" class="btn btn-dark">
-    Add Product
-  </button>
 </div>
 <div class="my-3">
   <!-- One way binding (tek yönlü atama) -->
@@ -43,11 +40,11 @@
     <!-- Sanal, html tarafında render'lanmayan veya bir etikete karşılık gelmeyen bir etiket olacak -->
 
     <!--# *ngIf  -->
-
     <!-- kategori seçildiğinde veya ürünler ilk yüklendiğinde eğer ürün yoksa uyarı çıkar. -->
     <div *ngIf="products.length === 0" class="alert alert-warning" role="alert">
       Aramanızla eşleşen ürün bulunamadı.
     </div>
+
     <div
       *ngIf="isProductCardShow(product); else productDiscontinued"
       [class]="productCardClass"

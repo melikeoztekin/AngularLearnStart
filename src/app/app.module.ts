@@ -4,8 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
@@ -16,6 +16,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ProductFormPageComponent } from './pages/product-form-page/product-form-page.component';
 import { DashboardProductsPageComponent } from './pages/dashboard-products-page/dashboard-products-page.component';
+import { DashboardProductsListComponent } from './components/dashboard-products-list/dashboard-products-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,7 @@ import { DashboardProductsPageComponent } from './pages/dashboard-products-page/
     ProductFormComponent,
     ProductFormPageComponent,
     DashboardProductsPageComponent,
+    DashboardProductsListComponent,
   ], // HTML tarafındaki angular bileşenlerini tanımlar
   imports: [
     BrowserModule,

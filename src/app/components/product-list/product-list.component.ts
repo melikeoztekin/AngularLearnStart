@@ -56,7 +56,7 @@ export class ProductListComponent implements OnInit {
     this.getSearchProductNameFromRoute();
   }
 
-  getListProducts(options?: GetListOptionsType): void {
+  getProductsList(options?: GetListOptionsType): void {
     this.productsService.getList(options).subscribe((response) => {
       //# setTimeout kullanmamızın sebebi localde çalıştığımız için veriler çok hızlı yüklenecektir. Spinner çalışma seklini görüntülemek için kullandık 1.5sn içinde ürünler görüntülenecektir.
       setTimeout(() => {
@@ -92,7 +92,7 @@ export class ProductListComponent implements OnInit {
       }
       this.isLoading = false;
       if (this.isLoading === false) {
-        this.getListProducts({
+        this.getProductsList({
           pagination: this.pagination,
           filters: this.filters,
         });
@@ -122,7 +122,7 @@ export class ProductListComponent implements OnInit {
       }
       this.isLoading = false;
       if (this.isLoading == false) {
-        this.getListProducts({
+        this.getProductsList({
           pagination: this.pagination,
           filters: this.filters,
         });
@@ -148,7 +148,7 @@ export class ProductListComponent implements OnInit {
 
     this.filters['name_like'] = this.searchProductNameInput;
     this.resetPagination();
-    this.getListProducts({
+    this.getProductsList({
       pagination: this.pagination,
       filters: this.filters,
     });
@@ -156,7 +156,7 @@ export class ProductListComponent implements OnInit {
 
   changePage(page: number): void {
     this.pagination.page = page;
-    this.getListProducts({
+    this.getProductsList({
       pagination: this.pagination,
       filters: this.filters,
     });

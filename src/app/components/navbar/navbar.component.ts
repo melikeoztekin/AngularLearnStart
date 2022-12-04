@@ -17,5 +17,10 @@ export class NavbarComponent {
       routerLink: '/login',
       isRouterActiveExact: false,
     },
+    {
+      label: 'Product Dashboard',
+      routerLink: '/dashboard/products',
+      isRouterActiveExact: false,
+    },
   ];
 }
