@@ -1,0 +1,13 @@
+<div class="card-body">
+  <h5 class="card-title">{{ product.name }}</h5>
+  <p>
+    <small> categoryId: {{ product.categoryId }}</small>
+  </p>
+  <p class="card-text">
+    {{ product.quantityPerUnit }}
+  </p>
+  <p class="card-text">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, magnam.
+  </p>
+  <a (click)="addToCartClick()" class="btn btn-dark">Add to cart</a>
+</div>

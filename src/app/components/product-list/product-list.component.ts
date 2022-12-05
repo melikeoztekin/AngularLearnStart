@@ -166,4 +166,8 @@ export class ProductListComponent implements OnInit {
     this.pagination.page = 1;
     this.lastPage = undefined;
   }
+
+  addToCartClick(product: Product) {
+    console.log('sepete eklenecek ürün', product);
+  }
 }

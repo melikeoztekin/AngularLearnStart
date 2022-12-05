@@ -50,17 +50,10 @@
       [class]="productCardClass"
       style="width: 18rem"
     >
-      <div class="card-body">
-        <h5 class="card-title">{{ product.name }}</h5>
-        <p>
-          <small> categoryId: {{ product.categoryId }}</small>
-        </p>
-        <p class="card-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem,
-          magnam.
-        </p>
-        <a href="#" class="btn btn-dark">Add to cart</a>
-      </div>
+      <app-product-card
+        (onAddToCartClick)="addToCartClick($event)"
+        [product]="product"
+      ></app-product-card>
     </div>
     <!-- Satılan ürünlerin listesi -->
 

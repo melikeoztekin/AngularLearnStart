@@ -21,6 +21,7 @@ import { DashboardCategoriesPageComponent } from './pages/dashboard-categories-p
 import { DashboardCategoriesListComponent } from './components/dashboard-categories-list/dashboard-categories-list.component';
 import { CategoryFormPageComponent } from './pages/category-form-page/category-form-page.component';
 import { CategoryFormComponent } from './components/category-form/category-form.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CategoryFormComponent } from './components/category-form/category-form.
     DashboardCategoriesListComponent,
     CategoryFormPageComponent,
     CategoryFormComponent,
+    ProductCardComponent,
   ], // HTML tarafındaki angular bileşenlerini tanımlar
   imports: [
     BrowserModule,

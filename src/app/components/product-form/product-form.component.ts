@@ -1,3 +1,4 @@
+import { Supplier } from './../../models/supplier';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -7,8 +8,11 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
+import { CategoriesService } from 'src/app/services/categoriesService/categories.service';
 import { ProductsService } from 'src/app/services/productsService/products.service';
+import { SuppliersService } from 'src/app/services/suppliersService/suppliers.service';
 
 @Component({
   selector: 'app-product-form',
@@ -20,6 +24,9 @@ export class ProductFormComponent implements OnInit {
 
   productForm!: FormGroup;
   productToUpdate: Product | null = null;
+  categories: Category[] = [];
+  suppliers: Supplier[] = [];
+
   get isEditting(): boolean {
     return this.productToUpdate !== null;
   }
@@ -29,7 +36,9 @@ export class ProductFormComponent implements OnInit {
     private productsService: ProductsService,
     private toastrService: ToastrService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private categoriesService: CategoriesService,
+    private suppliersService: SuppliersService
   ) {
     // this.productForm = new FormGroup({
     //   name: new FormControl(''),
@@ -38,6 +47,8 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void {
     this.createProductForm();
     this.getProductIdFromRoute();
+    this.getCategories();
+    this.getSuppliers();
   }
 
   createProductForm() {
@@ -68,6 +79,8 @@ export class ProductFormComponent implements OnInit {
     const request: Product = {
       //# backend'in product add endpoint'ine gönderilecek olan request modeli
       ...this.productForm.value,
+      categoryId: Number(this.productForm.value.categoryId),
+      supplierId: Number(this.productForm.value.supplierId),
       name: this.productForm.value.name.trim(), //# ...this.productForm.value ile gelen 'name' değerinin üzerine tekrar yazıyoruz
     };
     this.productsService.add(request).subscribe((response) => {
@@ -124,6 +137,18 @@ export class ProductFormComponent implements OnInit {
     this.productsService.delete(this.productToUpdate!.id).subscribe(() => {
       this.toastrService.success('Product deleted successfully');
       this.router.navigate(['/dashboard', 'products']);
+    });
+  }
+
+  getCategories(): void {
+    this.categoriesService.getList().subscribe((response: Category[]) => {
+      this.categories = response;
+    });
+  }
+
+  getSuppliers(): void {
+    this.suppliersService.getList().subscribe((response: Supplier[]) => {
+      this.suppliers = response;
     });
   }
 }
