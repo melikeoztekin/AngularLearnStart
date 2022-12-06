@@ -9,6 +9,7 @@ import { Product } from 'src/app/models/product';
 export class ProductCardComponent {
   @Input() product!: Product;
   @Output() onAddToCartClick = new EventEmitter<Product>();
+  dateNow: Date = new Date();
 
   addToCartClick() {
     //# Parent componenti uyar

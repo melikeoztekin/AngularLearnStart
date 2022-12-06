@@ -3,9 +3,13 @@
   <p>
     <small> categoryId: {{ product.categoryId }}</small>
   </p>
-  <p class="card-text">
-    {{ product.quantityPerUnit }}
+  <p>
+    {{ product.quantityPerUnit | uppercase }}
   </p>
+  <p>
+    {{ product.unitPrice | currency : "₺" : "symbol" }}
+  </p>
+  <p>{{ dateNow | date : "M/d/yy" }}</p>
   <p class="card-text">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, magnam.
   </p>

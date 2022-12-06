@@ -36,7 +36,12 @@
   </div>
   <!--# Attribute directive  -->
 
-  <ng-template ngFor let-product [ngForOf]="products">
+  <ng-template
+    ngFor
+    let-product
+    [ngForOf]="products | filterProductByPrice : 18 : 'gt'"
+  >
+    <!-- [ngForOf]="products | filterProduct : searchProductNameInput ?? ''" -->
     <!-- Sanal, html tarafında render'lanmayan veya bir etikete karşılık gelmeyen bir etiket olacak -->
 
     <!--# *ngIf  -->
