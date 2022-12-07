@@ -1,12 +1,12 @@
 <div class="card-body">
-  <h5 class="card-title">{{ product.name }}</h5>
+  <h5 class="card-title" appHighlight>{{ product.name }}</h5>
   <p>
     <small> categoryId: {{ product.categoryId }}</small>
   </p>
   <p>
     {{ product.quantityPerUnit | uppercase }}
   </p>
-  <p>
+  <p appHighlight>
     {{ product.unitPrice | currency : "₺" : "symbol" }}
   </p>
   <p>{{ dateNow | date : "M/d/yy" }}</p>

@@ -24,6 +24,7 @@ import { CategoryFormComponent } from './components/category-form/category-form.
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { FilterProductPipe } from './pipes/filter-product.pipe';
 import { FilterProductByPricePipe } from './pipes/filter-product-by-price.pipe';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { FilterProductByPricePipe } from './pipes/filter-product-by-price.pipe';
     ProductCardComponent,
     FilterProductPipe,
     FilterProductByPricePipe,
+    HighlightDirective,
   ], // HTML tarafındaki angular bileşenlerini tanımlar
   imports: [
     BrowserModule,
