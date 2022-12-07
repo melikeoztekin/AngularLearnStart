@@ -1,17 +1,34 @@
 <div class="card-body">
-  <h5 class="card-title" appHighlight>{{ product.name }}</h5>
+  <h5 class="card-title" [appHighlight]="'yellow'">
+    {{ product.name }}
+  </h5>
   <p>
     <small> categoryId: {{ product.categoryId }}</small>
   </p>
   <p>
     {{ product.quantityPerUnit | uppercase }}
   </p>
-  <p appHighlight>
+  <p [appHighlight]="'blue'">
+    <!-- parametre ile özel stil verildi -->
     {{ product.unitPrice | currency : "₺" : "symbol" }}
   </p>
   <p>{{ dateNow | date : "M/d/yy" }}</p>
   <p class="card-text">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, magnam.
   </p>
-  <a (click)="addToCartClick()" class="btn btn-dark">Add to cart</a>
+  <div class="d-flex justify-content-between">
+    <a
+      (click)="addToCartClick()"
+      appButtonColor
+      [buttonType]="'dark'"
+      [backgroundColor]="'blue'"
+      ><i class="fa-solid fa-shopping-cart"></i>
+    </a>
+    <a appButtonColor [buttonType]="'dark'" [backgroundColor]="'red'"
+      ><i class="fa-solid fa-heart"></i
+    ></a>
+    <a appButtonColor [buttonType]="'dark'" [backgroundColor]="'yellow'"
+      ><i class="fa-solid fa-share"></i
+    ></a>
+  </div>
 </div>
