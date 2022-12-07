@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { Pagination } from './../../models/pagination';
 import { GetListOptionsType } from './../../models/get-list-options';
 import { ProductsService } from './../../services/productsService/products.service';
@@ -21,7 +22,10 @@ export class ProductListComponent implements OnInit {
     pageSize: 12,
   };
   lastPage?: number;
-  filters: any = {};
+  filters: any = { productFilterPrice: 0 };
+  selectFilter!: 0 | 1 | 2 | 3 | 4;
+  filterPrice: number = 0;
+  selectPriceForm!: FormGroup;
   isLoading: boolean = false;
 
   //# Client Side Filter
@@ -169,5 +173,10 @@ export class ProductListComponent implements OnInit {
 
   addToCartClick(product: Product) {
     console.log('sepete eklenecek ürün', product);
+  }
+
+  onSelectPrice(event: Event): void {
+    const a = Number((event.target as HTMLInputElement).value);
+    this.selectFilter = a as 0 | 1 | 2 | 3 | 4;
   }
 }

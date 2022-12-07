@@ -1,29 +1,37 @@
-import { Product } from 'src/app/models/product';
 import { Pipe, PipeTransform } from '@angular/core';
+import { Product } from '../models/product';
 
 @Pipe({
   name: 'filterProductByPrice',
 })
 export class FilterProductByPricePipe implements PipeTransform {
-  transform(products: Product[], price: number, operator?: string): Product[] {
-    if (operator == 'gt') {
-      let filterProductByPrice = products.filter((p) => p.unitPrice > price);
-      return filterProductByPrice;
+  transform(
+    products: Product[],
+    price: number,
+    operator: 0 | 1 | 2 | 3 | 4 = 0
+  ): Product[] {
+    if (price <= 0) return products;
+    let filteredProducts!: Product[];
+    //# filteredProducts => içini doldurma
+
+    switch (operator) {
+      case 0:
+        filteredProducts = products.filter((p) => p.unitPrice == price);
+        break;
+      case 1:
+        filteredProducts = products.filter((p) => p.unitPrice <= price);
+        break;
+      case 2:
+        filteredProducts = products.filter((p) => p.unitPrice >= price);
+        break;
+      case 3:
+        filteredProducts = products.filter((p) => p.unitPrice > price);
+        break;
+      case 4:
+        filteredProducts = products.filter((p) => p.unitPrice < price);
+        break;
     }
-    if (operator == 'lt') {
-      let filterProductByPrice = products.filter((p) => p.unitPrice < price);
-      return filterProductByPrice;
-    }
-    if (operator == 'gte') {
-      let filterProductByPrice = products.filter((p) => p.unitPrice >= price);
-      return filterProductByPrice;
-    }
-    if (operator == 'lte') {
-      let filterProductByPrice = products.filter((p) => p.unitPrice <= price);
-      return filterProductByPrice;
-    } else operator == '';
-    let filterProductByPrice = products.filter((p) => p.unitPrice <= price);
-    return filterProductByPrice;
+    return filteredProducts;
   }
 }
 
