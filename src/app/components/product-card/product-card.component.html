@@ -1,5 +1,5 @@
 <div class="card-body">
-  <h5 class="card-title" [appHighlight]="'yellow'">
+  <h5 class="card-title" appHighlight [backgroundColor]="'pink'">
     {{ product.name }}
   </h5>
   <p>
@@ -8,7 +8,7 @@
   <p>
     {{ product.quantityPerUnit | uppercase }}
   </p>
-  <p [appHighlight]="'blue'">
+  <p appHighlight [backgroundColor]="'#D1E7DD'">
     <!-- parametre ile özel stil verildi -->
     {{ product.unitPrice | currency : "₺" : "symbol" }}
   </p>
@@ -16,6 +16,7 @@
   <p class="card-text">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, magnam.
   </p>
+
   <div class="d-flex justify-content-between">
     <a
       (click)="addToCartClick()"
@@ -27,7 +28,7 @@
     <a appButtonColor [buttonType]="'dark'" [backgroundColor]="'red'"
       ><i class="fa-solid fa-heart"></i
     ></a>
-    <a appButtonColor [buttonType]="'dark'" [backgroundColor]="'yellow'"
+    <a appButtonColor [buttonType]="'dark'" [backgroundColor]="'green'"
       ><i class="fa-solid fa-share"></i
     ></a>
   </div>
