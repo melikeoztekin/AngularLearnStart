@@ -13,6 +13,7 @@ import {
 export class ButtonColorDirective implements OnInit {
   @Input() buttonType!: string;
   @Input() backgroundColor!: string;
+  @Input() borderColor: string = 'transparent';
   // colorArray = [
   //   'danger',
   //   'success',
@@ -54,6 +55,7 @@ export class ButtonColorDirective implements OnInit {
       'background-color',
       this.backgroundColor
     );
+    this.el.nativeElement.style.borderColor = this.borderColor;
   }
 
   @HostListener('mouseleave')
