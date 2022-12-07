@@ -8,27 +8,27 @@ export class FilterProductByPricePipe implements PipeTransform {
   transform(
     products: Product[],
     price: number,
-    operator: 0 | 1 | 2 | 3 | 4 = 0
+    operator: 'gt' | 'lt' | 'gte' | 'lte' | 'eq' = 'eq'
   ): Product[] {
     if (price <= 0) return products;
-    let filteredProducts!: Product[];
+    let filteredProducts: Product[] = products;
     //# filteredProducts => içini doldurma
 
     switch (operator) {
-      case 0:
+      case 'eq':
         filteredProducts = products.filter((p) => p.unitPrice == price);
         break;
-      case 1:
-        filteredProducts = products.filter((p) => p.unitPrice <= price);
-        break;
-      case 2:
-        filteredProducts = products.filter((p) => p.unitPrice >= price);
-        break;
-      case 3:
+      case 'gt':
         filteredProducts = products.filter((p) => p.unitPrice > price);
         break;
-      case 4:
+      case 'lt':
         filteredProducts = products.filter((p) => p.unitPrice < price);
+        break;
+      case 'lte':
+        filteredProducts = products.filter((p) => p.unitPrice <= price);
+        break;
+      case 'gte':
+        filteredProducts = products.filter((p) => p.unitPrice >= price);
         break;
     }
     return filteredProducts;

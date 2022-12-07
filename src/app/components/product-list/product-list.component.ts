@@ -23,9 +23,7 @@ export class ProductListComponent implements OnInit {
   };
   lastPage?: number;
   filters: any = { productFilterPrice: 0 };
-  selectFilter!: 0 | 1 | 2 | 3 | 4;
-  filterPrice: number = 0;
-  selectPriceForm!: FormGroup;
+  priceFilterType: 'gt' | 'lt' | 'gte' | 'lte' | 'eq' = 'eq';
   isLoading: boolean = false;
 
   //# Client Side Filter
@@ -175,8 +173,9 @@ export class ProductListComponent implements OnInit {
     console.log('sepete eklenecek ürün', product);
   }
 
-  onSelectPrice(event: Event): void {
-    const a = Number((event.target as HTMLInputElement).value);
-    this.selectFilter = a as 0 | 1 | 2 | 3 | 4;
+  onSearchPriceChange(event: any) {
+    if (this.filters.productFilterPrice == null) {
+      this.filters.productFilterPrice = 0;
+    }
   }
 }

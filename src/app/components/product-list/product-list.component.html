@@ -14,26 +14,85 @@
   <!-- [value]="searchProductNameInput" -->
   <!-- $event ilgili event'in özelliklerinin bulunduğu html tarafından geçilen js objesi angular tarafından geçilecektir. -->
 </div>
-<div class="d-flex align-items-center justify-content-between my-3">
-  <input
-    type="number"
-    class="form-control"
-    id="productPriceFilterInput"
-    [(ngModel)]="filterPrice"
-  />
-  <form [formGroup]="selectPriceForm" (change)="onSelectPrice($event)">
-    <select
-      class="form-select"
-      formControlName="selectFilter"
-      id="selectFilterInput"
-    >
-      <option [value]="0">Equal</option>
-      <option [value]="3">Greater than</option>
-      <option [value]="4">Less than</option>
-      <option [value]="2">Greater than or equals to</option>
-      <option [value]="1">Less than or equals to</option>
-    </select>
-  </form>
+<div class="row">
+  <div class="col-6">
+    <input
+      type="number"
+      class="form-control"
+      id="productPriceFilterInput"
+      (change)="onSearchPriceChange($event)"
+      [(ngModel)]="filters.productFilterPrice"
+    />
+  </div>
+
+  <div class="col-6">
+    <div class="d-flex">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="flexRadioDefault"
+          id="flexRadioDefault1"
+          value="eq"
+          [(ngModel)]="priceFilterType"
+          checked
+        />
+        <label class="form-check-label" for="flexRadioDefault1"> Equal </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="flexRadioDefault"
+          id="flexRadioDefault2"
+          value="gt"
+          [(ngModel)]="priceFilterType"
+        />
+        <label class="form-check-label" for="flexRadioDefault2">
+          Greater than
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="flexRadioDefault"
+          id="flexRadioDefault3"
+          value="lt"
+          [(ngModel)]="priceFilterType"
+        />
+        <label class="form-check-label" for="flexRadioDefault3">
+          Less than
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="flexRadioDefault"
+          id="flexRadioDefault4"
+          value="gte"
+          [(ngModel)]="priceFilterType"
+        />
+        <label class="form-check-label" for="flexRadioDefault4">
+          Greater than or equals to
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="flexRadioDefault"
+          id="flexRadioDefault5"
+          value="lte"
+          [(ngModel)]="priceFilterType"
+        />
+        <label class="form-check-label" for="flexRadioDefault5">
+          Less than or equals to
+        </label>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ürünler yüklenirken spinner görüntüsü gelecektir. -->
@@ -61,7 +120,7 @@
     [ngForOf]="
       products
         | filterProduct : searchProductNameInput ?? ''
-        | filterProductByPrice : filterPrice : selectFilter
+        | filterProductByPrice : filters.productFilterPrice : priceFilterType
     "
   >
     <!-- [ngForOf]="products | filterProduct : searchProductNameInput ?? ''" -->
