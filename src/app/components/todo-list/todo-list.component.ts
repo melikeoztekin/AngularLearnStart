@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./todo-list.component.css'],
 })
 export class TodoListComponent {
+  title: string = 'To-Do List';
   addToDo: string = '';
   toDoList: string[] = [
     'Angular çalış',

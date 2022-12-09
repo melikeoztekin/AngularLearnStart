@@ -29,6 +29,7 @@ import { ButtonColorDirective } from './directives/button-color.directive';
 import { ProductFiltersComponent } from './components/product-filters/product-filters.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
+import { IfNotDirective } from './directives/if-not.directive';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
     ProductFiltersComponent,
     TodoListComponent,
     TodoItemComponent,
+    IfNotDirective,
   ], // HTML tarafındaki angular bileşenlerini tanımlar
   imports: [
     BrowserModule,
