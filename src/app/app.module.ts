@@ -26,6 +26,7 @@ import { FilterProductPipe } from './pipes/filter-product.pipe';
 import { FilterProductByPricePipe } from './pipes/filter-product-by-price.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { ButtonColorDirective } from './directives/button-color.directive';
+import { ProductFiltersComponent } from './components/product-filters/product-filters.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ButtonColorDirective } from './directives/button-color.directive';
     FilterProductByPricePipe,
     HighlightDirective,
     ButtonColorDirective,
+    ProductFiltersComponent,
   ], // HTML tarafındaki angular bileşenlerini tanımlar
   imports: [
     BrowserModule,

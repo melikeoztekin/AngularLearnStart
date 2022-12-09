@@ -82,12 +82,14 @@
                 type="checkbox"
                 id="flexCheckChecked"
                 checked
+                disabled
             /></ng-template>
             <input
               *ngIf="product.discontinued === false; else checkValid"
               class="form-check-input"
               type="checkbox"
               id="flexCheckChecked"
+              disabled
             />
           </td>
           <td>

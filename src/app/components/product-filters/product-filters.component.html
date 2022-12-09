@@ -1,0 +1,58 @@
+<div class="mt-5">
+  <h2>{{ title }}</h2>
+  <div class="my-3">
+    <label for="" class="form-label">Category</label>
+    <select class="form-select" formControlName="" id="">
+      <option value="0" disabled>Seçiniz</option>
+      <option value="1">birinci</option>
+      <option value="2">ikinci</option>
+    </select>
+  </div>
+
+  <div class="my-3">
+    <label for="" class="form-label">Supplier</label>
+    <select class="form-select" formControlName="" id="">
+      <option value="0" disabled>Seçiniz</option>
+      <option value="1">birinci</option>
+      <option value="2">ikinci</option>
+    </select>
+  </div>
+
+  <div class="my-3">
+    <label for="" class="form-label">Price</label>
+    <div class="d-flex">
+      <input
+        formControlName=""
+        type="text"
+        id=""
+        class="form-control"
+        placeholder="min"
+      />
+      <input
+        formControlName=""
+        type="text"
+        id=""
+        class="form-control"
+        placeholder="max"
+      />
+    </div>
+  </div>
+
+  <div class="my-3">
+    <label for="" class="form-label">Order</label>
+    <select class="form-select" formControlName="" id="">
+      <option value="0" disabled>Seçiniz</option>
+      <option value="1">çok satılanlar</option>
+      <option value="2">az satılanlar</option>
+    </select>
+  </div>
+  <div class="my-3">
+    <input formControlName="" type="checkbox" id="" class="form-check-input" />
+    <label class="form-check-label" for=""
+      >Sadece stokta olanları göster.</label
+    >
+  </div>
+  <div class="my-3">
+    <button class="w-100 btn btn-success center">Filters</button>
+  </div>
+</div>

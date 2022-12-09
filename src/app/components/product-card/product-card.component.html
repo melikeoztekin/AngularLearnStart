@@ -25,7 +25,11 @@
       [backgroundColor]="'blue'"
       ><i class="fa-solid fa-shopping-cart"></i>
     </a>
-    <a appButtonColor [buttonType]="'dark'" [backgroundColor]="'red'"
+    <a
+      (click)="addToFavClick()"
+      appButtonColor
+      [buttonType]="'dark'"
+      [backgroundColor]="'red'"
       ><i class="fa-solid fa-heart"></i
     ></a>
     <a appButtonColor [buttonType]="'dark'" [backgroundColor]="'green'"
