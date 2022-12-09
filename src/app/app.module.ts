@@ -27,6 +27,8 @@ import { FilterProductByPricePipe } from './pipes/filter-product-by-price.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { ButtonColorDirective } from './directives/button-color.directive';
 import { ProductFiltersComponent } from './components/product-filters/product-filters.component';
+import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { ProductFiltersComponent } from './components/product-filters/product-fi
     HighlightDirective,
     ButtonColorDirective,
     ProductFiltersComponent,
+    TodoListComponent,
+    TodoItemComponent,
   ], // HTML tarafındaki angular bileşenlerini tanımlar
   imports: [
     BrowserModule,
