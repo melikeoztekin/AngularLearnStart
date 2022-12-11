@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -31,6 +31,7 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { IfNotDirective } from './directives/if-not.directive';
 import { CategoryTableComponent } from './components/category-table/category-table.component';
+import { DateInterceptor } from './interceptors/date.interceptor';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,9 @@ import { CategoryTableComponent } from './components/category-table/category-tab
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
   ], // Angular modülleri import edeceğimiz yer
-  providers: [], // IoC Container'daki Dependency Injection'ları tanımlar
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true },
+  ], // IoC Container'daki Dependency Injection'ları tanımlar
   bootstrap: [AppComponent], // Hangi bileşenin ilk açıldığında çalışacağını belirtir
 })
 export class AppModule {}

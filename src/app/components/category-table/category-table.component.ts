@@ -9,6 +9,7 @@ import { GetListOptionsType } from 'src/app/models/get-list-options';
   styleUrls: ['./category-table.component.css'],
 })
 export class CategoryTableComponent implements OnInit {
+  title: string = 'Categories List Pagination';
   categories: Category[] = [];
   getOptions: GetListOptionsType;
   lastPage: boolean = false;
