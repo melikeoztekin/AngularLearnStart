@@ -32,6 +32,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { IfNotDirective } from './directives/if-not.directive';
 import { CategoryTableComponent } from './components/category-table/category-table.component';
 import { DateInterceptor } from './interceptors/date.interceptor';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { DateInterceptor } from './interceptors/date.interceptor';
   ], // Angular modülleri import edeceğimiz yer
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ], // IoC Container'daki Dependency Injection'ları tanımlar
   bootstrap: [AppComponent], // Hangi bileşenin ilk açıldığında çalışacağını belirtir
 })
