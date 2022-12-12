@@ -1,3 +1,4 @@
+import { LoadingService } from './services/loadingService/loading.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,5 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  ngOnInit(): void {}
+  constructor(private loadingService: LoadingService) {}
+
+  isLoading: boolean = false;
+  textMessage: string = '';
+  //# loading.service'den çekip, değerini değiştirmek istiyorum
+  ngOnInit(): void {
+    this.subscribeToLoading();
+    this.subscribeToTextMessage();
+  }
+
+  subscribeToLoading() {
+    this.loadingService.isLoadingSubject.subscribe((isLoading) => {
+      console.log(isLoading);
+      this.isLoading = isLoading;
+    });
+  }
+
+  subscribeToTextMessage() {
+    this.loadingService.textSubject.subscribe((response) => {
+      this.textMessage = response;
+    });
+  }
 }
