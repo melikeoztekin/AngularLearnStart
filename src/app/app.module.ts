@@ -8,61 +8,49 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { CategoryListComponent } from './components/category-list/category-list.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
+import { CategoryListComponent } from './features/components/category-list/category-list.component';
+import { ProductListComponent } from './features/components/product-list/product-list.component';
+import { HomePageComponent } from './features/pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
-import { ProductFormComponent } from './components/product-form/product-form.component';
+import { ProductFormComponent } from './features/components/product-form/product-form.component';
 import { ProductFormPageComponent } from './pages/product-form-page/product-form-page.component';
 import { DashboardProductsPageComponent } from './pages/dashboard-products-page/dashboard-products-page.component';
-import { DashboardProductsListComponent } from './components/dashboard-products-list/dashboard-products-list.component';
 import { DashboardCategoriesPageComponent } from './pages/dashboard-categories-page/dashboard-categories-page.component';
-import { DashboardCategoriesListComponent } from './components/dashboard-categories-list/dashboard-categories-list.component';
+import { DashboardCategoriesListComponent } from './features/components/dashboard-categories-list/dashboard-categories-list.component';
 import { CategoryFormPageComponent } from './pages/category-form-page/category-form-page.component';
-import { CategoryFormComponent } from './components/category-form/category-form.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
+import { CategoryFormComponent } from './features/components/category-form/category-form.component';
+import { ProductCardComponent } from './features/components/product-card/product-card.component';
 import { FilterProductPipe } from './pipes/filter-product.pipe';
 import { FilterProductByPricePipe } from './pipes/filter-product-by-price.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { ButtonColorDirective } from './directives/button-color.directive';
-import { ProductFiltersComponent } from './components/product-filters/product-filters.component';
-import { TodoListComponent } from './components/todo-list/todo-list.component';
-import { TodoItemComponent } from './components/todo-item/todo-item.component';
-import { IfNotDirective } from './directives/if-not.directive';
-import { CategoryTableComponent } from './components/category-table/category-table.component';
-import { DateInterceptor } from './interceptors/date.interceptor';
+import { ProductFiltersComponent } from './features/components/product-filters/product-filters.component';
+import { TodoListComponent } from './features/components/todo-list/todo-list.component';
+import { TodoItemComponent } from './features/components/todo-item/todo-item.component';
+import { CategoryTableComponent } from './features/components/category-table/category-table.component';
+import { DateInterceptor } from './core/interceptors/date.interceptor';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { OverlayLoadingComponent } from './components/overlay-loading/overlay-loading.component';
-import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
+import { AuthorizationInterceptor } from './core/interceptors/authorization.interceptor';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
+import { FeaturesModule } from './features/features.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    CategoryListComponent,
-    ProductListComponent,
-    HomePageComponent,
     LoginPageComponent,
     LoadingSpinnerComponent,
-    ProductFormComponent,
     ProductFormPageComponent,
     DashboardProductsPageComponent,
-    DashboardProductsListComponent,
     DashboardCategoriesPageComponent,
-    DashboardCategoriesListComponent,
     CategoryFormPageComponent,
-    CategoryFormComponent,
-    ProductCardComponent,
     FilterProductPipe,
     FilterProductByPricePipe,
     HighlightDirective,
     ButtonColorDirective,
-    ProductFiltersComponent,
-    TodoListComponent,
-    TodoItemComponent,
-    IfNotDirective,
-    CategoryTableComponent,
     OverlayLoadingComponent,
   ], // HTML tarafındaki angular bileşenlerini tanımlar
   imports: [
@@ -73,7 +61,11 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
+    SharedModule,
+    CoreModule,
+    FeaturesModule,
   ], // Angular modülleri import edeceğimiz yer
+  exports: [], // diğer moduller tarafından kullanılacak bileşenleri yazıyoruz
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },

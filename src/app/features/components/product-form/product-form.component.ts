@@ -1,4 +1,4 @@
-import { Supplier } from './../../models/supplier';
+import { Supplier } from '../../../models/supplier';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,

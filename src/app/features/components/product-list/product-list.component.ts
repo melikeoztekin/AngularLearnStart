@@ -1,7 +1,7 @@
 import { FormGroup } from '@angular/forms';
-import { Pagination } from './../../models/pagination';
-import { GetListOptionsType } from './../../models/get-list-options';
-import { ProductsService } from './../../services/productsService/products.service';
+import { Pagination } from '../../../models/pagination';
+import { GetListOptionsType } from '../../../models/get-list-options';
+import { ProductsService } from '../../../services/productsService/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';

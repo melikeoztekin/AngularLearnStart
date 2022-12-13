@@ -1,7 +1,7 @@
 import { DashboardCategoriesPageComponent } from './pages/dashboard-categories-page/dashboard-categories-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './pages/home-page/home-page.component';
+import { HomePageComponent } from './features/pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProductFormPageComponent } from './pages/product-form-page/product-form-page.component';
 import { DashboardProductsPageComponent } from './pages/dashboard-products-page/dashboard-products-page.component';

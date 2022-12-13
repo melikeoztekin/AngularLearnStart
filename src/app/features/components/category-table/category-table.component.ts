@@ -1,4 +1,4 @@
-import { CategoriesService } from './../../services/categoriesService/categories.service';
+import { CategoriesService } from '../../../services/categoriesService/categories.service';
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { GetListOptionsType } from 'src/app/models/get-list-options';
