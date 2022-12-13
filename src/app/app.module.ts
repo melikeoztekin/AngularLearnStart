@@ -34,6 +34,7 @@ import { CategoryTableComponent } from './components/category-table/category-tab
 import { DateInterceptor } from './interceptors/date.interceptor';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { OverlayLoadingComponent } from './components/overlay-loading/overlay-loading.component';
+import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,11 @@ import { OverlayLoadingComponent } from './components/overlay-loading/overlay-lo
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthorizationInterceptor,
+      multi: true,
+    },
   ], // IoC Container'daki Dependency Injection'ları tanımlar
   bootstrap: [AppComponent], // Hangi bileşenin ilk açıldığında çalışacağını belirtir
 })
