@@ -1,11 +1,11 @@
-import { DashboardCategoriesPageComponent } from './pages/dashboard-categories-page/dashboard-categories-page.component';
+import { DashboardCategoriesPageComponent } from './features/category/pages/dashboard-categories-page/dashboard-categories-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { ProductFormPageComponent } from './pages/product-form-page/product-form-page.component';
-import { DashboardProductsPageComponent } from './pages/dashboard-products-page/dashboard-products-page.component';
-import { CategoryFormPageComponent } from './pages/category-form-page/category-form-page.component';
+import { LoginPageComponent } from './shared/pages/login-page/login-page.component';
+import { ProductFormPageComponent } from './features/product/pages/product-form-page/product-form-page.component';
+import { DashboardProductsPageComponent } from './features/product/pages/dashboard-products-page/dashboard-products-page.component';
+import { CategoryFormPageComponent } from './features/category/pages/category-form-page/category-form-page.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomePageComponent },
