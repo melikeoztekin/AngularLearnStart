@@ -1,4 +1,4 @@
-import { Supplier } from '../../../../shared/models/supplier';
+import { Supplier } from '../../model/supplier';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

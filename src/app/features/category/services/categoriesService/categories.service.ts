@@ -2,7 +2,7 @@ import { environment } from '../../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Category } from '../../../../shared/models/category';
+import { Category } from '../../model/category';
 import { GetListOptionsType } from 'src/app/shared/models/get-list-options';
 
 //# Injectable, bir class'ın IoC'e katılması ve injectable olmasını sağlar. Dependency Injection mekanizmasını kullanarak servisin referansını alabiliriz.

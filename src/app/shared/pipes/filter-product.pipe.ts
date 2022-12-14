@@ -1,4 +1,4 @@
-import { Product } from 'src/app/shared/models/product';
+import { Product } from 'src/app/features/product/model/product';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({

@@ -1,6 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { Product } from 'src/app/shared/models/product';
+import { Product } from 'src/app/features/product/model/product';
 
 @Component({
   selector: 'app-product-card',

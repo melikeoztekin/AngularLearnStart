@@ -1,4 +1,4 @@
-import { Product } from '../../../../shared/models/product';
+import { Product } from '../../model/product';
 import { GetListOptionsType } from '../../../../shared/models/get-list-options';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';

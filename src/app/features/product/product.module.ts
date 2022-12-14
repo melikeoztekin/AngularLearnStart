@@ -14,29 +14,29 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
-    DashboardProductsListComponent,
-    ProductFiltersComponent,
     ProductListComponent,
     ProductFormComponent,
     ProductCardComponent,
-    DashboardProductsPageComponent,
+    ProductFiltersComponent,
+    DashboardProductsListComponent,
     ProductFormPageComponent,
+    DashboardProductsPageComponent,
   ],
   imports: [
     CommonModule,
     ProductRoutingModule,
-    SharedModule,
-    FormsModule,
     ReactiveFormsModule,
+    FormsModule,
+    SharedModule,
   ],
   exports: [
-    DashboardProductsListComponent,
-    ProductFiltersComponent,
     ProductListComponent,
     ProductFormComponent,
     ProductCardComponent,
-    DashboardProductsPageComponent,
+    ProductFiltersComponent,
+    DashboardProductsListComponent,
     ProductFormPageComponent,
+    DashboardProductsPageComponent,
   ],
 })
 export class ProductModule {}

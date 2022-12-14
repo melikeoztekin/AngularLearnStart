@@ -1,28 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
-import { AppComponent } from './app.component';
-import { DateInterceptor } from './core/interceptors/date.interceptor';
-import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
-import { AuthorizationInterceptor } from './core/interceptors/authorization.interceptor';
-import { SharedModule } from './shared/shared.module';
+//# custom module
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 import { ProductModule } from './features/product/product.module';
 import { CategoryModule } from './features/category/category.module';
 import { SupplierModule } from './features/supplier/supplier.module';
 import { TodoModule } from './features/todo/todo.module';
-import { HomePageComponent } from './pages/home-page/home-page.component';
+
+//# components
+import { AppComponent } from './app.component';
+import { HomePageComponent } from './shared/pages/home-page/home-page.component';
+import { LoginPageComponent } from './shared/pages/login-page/login-page.component';
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent], // HTML tarafındaki angular bileşenlerini tanımlar
+  declarations: [AppComponent, LoginPageComponent, HomePageComponent], // HTML tarafındaki angular bileşenlerini tanımlar
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     SharedModule,
@@ -32,15 +36,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
     SupplierModule,
     TodoModule,
   ], // Angular modülleri import edeceğimiz yer
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthorizationInterceptor,
-      multi: true,
-    },
-  ], // IoC Container'daki Dependency Injection'ları tanımlar
+  providers: [], // IoC Container'daki Dependency Injection'ları tanımlar
   bootstrap: [AppComponent], // Hangi bileşenin ilk açıldığında çalışacağını belirtir
 })
 export class AppModule {}

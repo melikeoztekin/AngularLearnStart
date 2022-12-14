@@ -1,4 +1,4 @@
-import { Supplier } from '../../../../shared/models/supplier';
+import { Supplier } from '../../../supplier/model/supplier';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -8,8 +8,8 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Category } from 'src/app/shared/models/category';
-import { Product } from 'src/app/shared/models/product';
+import { Category } from 'src/app/features/category/model/category';
+import { Product } from 'src/app/features/product/model/product';
 import { CategoriesService } from 'src/app/features/category/services/categoriesService/categories.service';
 import { ProductsService } from 'src/app/features/product/services/productsService/products.service';
 import { SuppliersService } from 'src/app/features/supplier/services/suppliersService/suppliers.service';

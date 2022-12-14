@@ -4,7 +4,7 @@ import { GetListOptionsType } from '../../../../shared/models/get-list-options';
 import { ProductsService } from '../../services/productsService/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/shared/models/product';
+import { Product } from 'src/app/features/product/model/product';
 
 @Component({
   selector: 'app-product-list',

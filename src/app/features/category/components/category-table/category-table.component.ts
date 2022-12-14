@@ -1,6 +1,6 @@
 import { CategoriesService } from '../../services/categoriesService/categories.service';
 import { Component, OnInit } from '@angular/core';
-import { Category } from 'src/app/shared/models/category';
+import { Category } from 'src/app/features/category/model/category';
 import { GetListOptionsType } from 'src/app/shared/models/get-list-options';
 
 @Component({
