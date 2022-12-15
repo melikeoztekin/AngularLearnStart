@@ -33,6 +33,7 @@ import { IfNotDirective } from './directives/if-not.directive';
 import { CategoryTableComponent } from './components/category-table/category-table.component';
 import { DateInterceptor } from './interceptors/date.interceptor';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { OverlayLoadingComponent } from './components/overlay-loading/overlay-loading.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
     TodoItemComponent,
     IfNotDirective,
     CategoryTableComponent,
+    OverlayLoadingComponent,
   ], // HTML tarafındaki angular bileşenlerini tanımlar
   imports: [
     BrowserModule,
