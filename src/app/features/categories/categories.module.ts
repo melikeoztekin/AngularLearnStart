@@ -11,6 +11,7 @@ import { CategoryFormPageComponent } from './pages/category-form-page/category-f
 import { DashboardCategoriesPageComponent } from './pages/dashboard-categories-page/dashboard-categories-page.component';
 import { LoadingSpinnerComponent } from 'src/app/core/components/loading-spinner/loading-spinner.component';
 import { CoreModule } from 'src/app/core/core.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CoreModule } from 'src/app/core/core.module';
     CommonModule,
     CategoriesRoutingModule,
     CoreModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
   ],

@@ -25,7 +25,7 @@ export class LoadingService {
   stopLoading() {
     setTimeout(() => {
       this.isLoadingSubject.next(false);
-    }, 3000);
+    }, 1000);
   }
 }
 
