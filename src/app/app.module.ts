@@ -35,6 +35,8 @@ import { DateInterceptor } from './interceptors/date.interceptor';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { OverlayLoadingComponent } from './components/overlay-loading/overlay-loading.component';
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
+import { AlertComponent } from './shared/components/alert/alert.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -73,6 +75,7 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
+    SharedModule,
   ], // Angular modülleri import edeceğimiz yer
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true },
