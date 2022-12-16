@@ -31,6 +31,7 @@ import { ButtonColorDirective } from './directives/button-color.directive';
     MainLayoutComponent,
     HighlightDirective,
     ButtonColorDirective,
+    TodoListComponent,
   ],
 })
 export class SharedModule {}

@@ -40,6 +40,7 @@ import { FilterProductPipe } from './pipes/filter-product.pipe';
     ProductFormPageComponent,
     FilterProductByPricePipe,
     FilterProductPipe,
+    ProductFiltersComponent,
   ],
 })
 export class ProductsModule {}

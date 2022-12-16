@@ -9,6 +9,8 @@ import { CategoryTableComponent } from './components/category-table/category-tab
 import { DashboardCategoriesListComponent } from './components/dashboard-categories-list/dashboard-categories-list.component';
 import { CategoryFormPageComponent } from './pages/category-form-page/category-form-page.component';
 import { DashboardCategoriesPageComponent } from './pages/dashboard-categories-page/dashboard-categories-page.component';
+import { LoadingSpinnerComponent } from 'src/app/core/components/loading-spinner/loading-spinner.component';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { DashboardCategoriesPageComponent } from './pages/dashboard-categories-p
   imports: [
     CommonModule,
     CategoriesRoutingModule,
+    CoreModule,
     FormsModule,
     ReactiveFormsModule,
   ],

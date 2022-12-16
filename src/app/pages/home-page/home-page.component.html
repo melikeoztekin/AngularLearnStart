@@ -1,10 +1,21 @@
 <app-main-layout>
   <div class="row">
-    <div class="col-4">
+    <div class="col-12 col-lg-3">
       <app-category-list></app-category-list>
+      <div>
+        <app-product-filters></app-product-filters>
+      </div>
     </div>
-    <div class="col-8">
+    <div class="col">
       <app-product-list></app-product-list>
+    </div>
+    <div class="col-12 mt-5">
+      <app-category-table></app-category-table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 my-3">
+      <app-todo-list></app-todo-list>
     </div>
   </div>
 </app-main-layout>
