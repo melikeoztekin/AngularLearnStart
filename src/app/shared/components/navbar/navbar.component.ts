@@ -1,11 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/services/authService/auth.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  constructor(private authService: AuthService) {}
+
+  isAuthenticated: boolean = this.authService.isAuthenticated;
+
+  ngOnInit(): void {
+    this.addLoginIfNotAuthenticated();
+  }
+
+  addLoginIfNotAuthenticated() {
+    if (!this.isAuthenticated) {
+      this.navItems.push({
+        label: 'Login',
+        routerLink: '/login',
+        isRouterActiveExact: true,
+      });
+    } else {
+      //# kullanıcı giriş yapmıştır
+    }
+  }
+
   navItems: any[] = [
     {
       label: 'Home',

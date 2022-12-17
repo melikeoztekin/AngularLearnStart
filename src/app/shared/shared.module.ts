@@ -10,7 +10,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonColorDirective } from './directives/button-color.directive';
 
 @NgModule({
@@ -24,7 +24,12 @@ import { ButtonColorDirective } from './directives/button-color.directive';
     ButtonColorDirective,
     LoginPageComponent,
   ],
-  imports: [CommonModule, SharedRoutingModule, FormsModule],
+  imports: [
+    CommonModule,
+    SharedRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   exports: [
     AlertComponent,
     NavbarComponent,

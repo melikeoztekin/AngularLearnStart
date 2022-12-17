@@ -2,14 +2,17 @@ import { DashboardCategoriesPageComponent } from './features/categories/pages/da
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { LoginPageComponent } from './shared/pages/login-page/login-page.component';
 import { ProductFormPageComponent } from './features/products/pages/product-form-page/product-form-page.component';
 import { DashboardProductsPageComponent } from './features/products/pages/dashboard-products-page/dashboard-products-page.component';
 import { CategoryFormPageComponent } from './features/categories/pages/category-form-page/category-form-page.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomePageComponent },
-  { path: 'category/:categoryId', component: HomePageComponent },
+  {
+    path: 'category/:categoryId',
+    component: HomePageComponent,
+  },
   {
     path: 'dashboard', //# Grand parent route
     children: [
@@ -38,6 +41,7 @@ const routes: Routes = [
         ], //# dashboard/products children route
       },
     ],
+    canActivate: [AuthGuard],
   },
 ];
 
