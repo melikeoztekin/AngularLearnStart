@@ -1,10 +1,11 @@
-import { FormGroup } from '@angular/forms';
 import { Pagination } from '../../../../core/models/pagination';
 import { GetListOptionsType } from '../../../../core/models/get-list-options';
 import { ProductsService } from '../../services/productsService/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/features/products/models/product';
+import { CartItem } from 'src/app/features/cart/models/cart-item';
+import { CartService } from 'src/app/features/cart/services/cartService/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -50,7 +51,8 @@ export class ProductListComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -169,13 +171,16 @@ export class ProductListComponent implements OnInit {
     this.lastPage = undefined;
   }
 
-  addToCartClick(product: Product) {
-    console.log('sepete eklenecek ürün', product);
-  }
-
   onSearchPriceChange(event: any) {
     if (this.filters.productFilterPrice == null) {
       this.filters.productFilterPrice = 0;
     }
+  }
+
+  addToCartClick(product: Product) {
+    // CartItem oluştur..
+    // cartService'den add metodunu çağır..
+    let cartItem: CartItem = { product: product, quantity: 1 };
+    this.cartService.add(cartItem);
   }
 }

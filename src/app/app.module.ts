@@ -27,7 +27,9 @@ import { CartModule } from './features/cart/cart.module';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }), // ToastrModule added
     SharedModule,
     CoreModule,
     ProductsModule,

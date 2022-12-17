@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { LocalstorageService } from './../../../core/services/localStorageService/localstorage.service';
+import { LocalStorageService } from './../../../core/services/localStorageService/localStorage.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/authService/auth.service';
@@ -13,7 +13,7 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private localStorageService: LocalstorageService,
+    private localStorageService: LocalStorageService,
     private router: Router
   ) {}
 

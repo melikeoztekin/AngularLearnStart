@@ -36,6 +36,26 @@
         />
         <button class="btn btn-outline-light" type="submit">Search</button>
       </form>
+      <div class="dropdown pl-2">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="fa-solid fa-cart-shopping"></i> Sepet ({{ cartLength }})
+        </button>
+        <ul class="dropdown-menu">
+          <li *ngFor="let item of cartItems" class="">
+            <a class="dropdown-item text-wrap"
+              >{{ item.product.name }} - {{ item.quantity }}</a
+            >
+          </li>
+          <button class="btn btn-dark w-100" routerLink="cart-summary">
+            go to cart
+          </button>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>

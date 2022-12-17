@@ -6,6 +6,9 @@
     <small> categoryId: {{ product.categoryId }}</small>
   </p>
   <p>
+    <small>units in stock: {{ product.unitsInStock }}</small>
+  </p>
+  <p>
     {{ product.quantityPerUnit | uppercase }}
   </p>
   <p appHighlight [backgroundColor]="'#D1E7DD'">

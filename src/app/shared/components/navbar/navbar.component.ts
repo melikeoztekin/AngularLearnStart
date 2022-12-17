@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/authService/auth.service';
+import { CartItem } from 'src/app/features/cart/models/cart-item';
+import { CartService } from 'src/app/features/cart/services/cartService/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,12 +9,17 @@ import { AuthService } from 'src/app/core/services/authService/auth.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private authService: AuthService) {}
-
   isAuthenticated: boolean = this.authService.isAuthenticated;
+  cartItems: CartItem[] = [];
+
+  constructor(
+    private authService: AuthService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.addLoginIfNotAuthenticated();
+    this.getCartItems();
   }
 
   addLoginIfNotAuthenticated() {
@@ -27,16 +34,24 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  getCartItems() {
+    this.cartService.cartItems.subscribe((response) => {
+      this.cartItems = response;
+    });
+  }
+
+  get cartLength(): number {
+    let length = this.cartItems.reduce((acc, cartItem) => {
+      return acc + cartItem.quantity;
+    }, 0);
+    return length;
+  }
+
   navItems: any[] = [
     {
       label: 'Home',
       routerLink: '/',
       isRouterActiveExact: true,
-    },
-    {
-      label: 'Login',
-      routerLink: '/login',
-      isRouterActiveExact: false,
     },
     {
       label: 'Product Dashboard',
@@ -48,5 +63,10 @@ export class NavbarComponent implements OnInit {
       routerLink: '/dashboard/categories',
       isRouterActiveExact: false,
     },
+    // {
+    //   label: 'Cart',
+    //   routerLink: '/cart-summary',
+    //   isRouterActiveExact: false,
+    // },
   ];
 }

@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { LoginRequestModel } from '../../models/login-request-model';
 import { LoginResponseModel } from '../../models/login-response-model';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { LocalstorageService } from '../localStorageService/localstorage.service';
+import { LocalStorageService } from '../localStorageService/localStorage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class AuthService {
   constructor(
     private httpClient: HttpClient,
     private jwtHelperService: JwtHelperService,
-    private localStorageService: LocalstorageService
+    private localStorageService: LocalStorageService
   ) {}
 
   login(request: LoginRequestModel): Observable<LoginResponseModel> {
