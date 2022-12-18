@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { CartItem } from './../../models/cart-item';
 import { Injectable } from '@angular/core';
 
@@ -6,8 +6,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CartService {
+  //# initial value => başlangıç değeri = []
   cartItems: BehaviorSubject<CartItem[]> = new BehaviorSubject<CartItem[]>([]);
   constructor() {}
+
+  // initial value yok!!
+  cartItems2: Subject<CartItem[]> = new Subject<CartItem[]>();
 
   add(cartItem: CartItem) {
     //# Sepeti kontrol et, aynı üründen varsa adeti gelen adet kadar arttır.
@@ -35,5 +39,6 @@ export class CartService {
   remove(id: number) {
     //# Gelen id değeri ile cartItem ara, bulursan sil..
     this.cartItems.next(this.cartItems.value.filter((i) => i.id != id));
+    //# this.cartItems.value sadece ilgili değişkenin anlık değerini okumak için kullanılmal
   }
 }

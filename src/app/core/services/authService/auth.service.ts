@@ -26,6 +26,10 @@ export class AuthService {
     );
   }
 
+  logout() {
+    this.localStorageService.remove('token');
+  }
+
   get isAuthenticated(): boolean {
     let token = this.localStorageService.get('token');
     if (!token) return false;

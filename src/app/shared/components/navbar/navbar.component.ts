@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/authService/auth.service';
 import { CartItem } from 'src/app/features/cart/models/cart-item';
 import { CartService } from 'src/app/features/cart/services/cartService/cart.service';
@@ -14,7 +15,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +47,11 @@ export class NavbarComponent implements OnInit {
       return acc + cartItem.quantity;
     }, 0);
     return length;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigateByUrl('/login');
   }
 
   navItems: any[] = [

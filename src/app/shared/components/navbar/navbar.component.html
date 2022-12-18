@@ -26,16 +26,10 @@
             >{{ navItem.label }}</a
           >
         </li>
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a class="nav-link" (click)="logout()">Logout</a>
+        </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-light" type="submit">Search</button>
-      </form>
       <div class="dropdown pl-2">
         <button
           class="btn btn-secondary dropdown-toggle"
