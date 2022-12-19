@@ -1,14 +1,24 @@
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { CartItem } from './../../models/cart-item';
 import { Injectable } from '@angular/core';
+import { SharedState } from 'src/app/shared/store/shared.reducers';
+import { Store } from '@ngrx/store';
+import {
+  addItemToCart,
+  removeItemFromCart,
+} from 'src/app/shared/store/cart/cart.actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
+  cartItemModel$: Observable<CartItem[]> = this.store.select(
+    (state) => state.cart
+  );
+
   //# initial value => başlangıç değeri = []
   cartItems: BehaviorSubject<CartItem[]> = new BehaviorSubject<CartItem[]>([]);
-  constructor() {}
+  constructor(private store: Store<SharedState>) {}
 
   // initial value yok!!
   cartItems2: Subject<CartItem[]> = new Subject<CartItem[]>();
@@ -38,7 +48,17 @@ export class CartService {
 
   remove(id: number) {
     //# Gelen id değeri ile cartItem ara, bulursan sil..
-    this.cartItems.next(this.cartItems.value.filter((i) => i.id != id));
+    //  this.cartItems.next(this.cartItems.value.filter((i) => i.id != id));
     //# this.cartItems.value sadece ilgili değişkenin anlık değerini okumak için kullanılmal
+    this.store.dispatch(removeItemFromCart({ id })); //# ngrx ile
+  }
+
+  addState(cartItem: CartItem) {
+    // action'ı çağırmak için => dispatch
+    this.store.dispatch(addItemToCart(cartItem));
+  }
+
+  removeState(id: number) {
+    this.store.dispatch(removeItemFromCart({ id }));
   }
 }

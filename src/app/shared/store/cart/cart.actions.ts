@@ -9,13 +9,13 @@ import { createAction, props } from '@ngrx/store';
 // ! unique olmalı
 export const addItemToCart = createAction(
   '[Cart] Add Item To Cart',
-  props<{ cartItem: CartItem }>()
+  props<CartItem>()
 );
 
 /* addItemTocart(cartItem){} */
 
 export const removeItemFromCart = createAction(
   '[Cart] Remove Item To Cart',
-  props<{ id: number }>
+  props<{ id: number }>()
 );
 /* removeItemFromCart(id:number) */
