@@ -12,6 +12,8 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonColorDirective } from './directives/button-color.directive';
+import { StoreModule } from '@ngrx/store';
+import { sharedReducers } from './store/shared.reducers';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { ButtonColorDirective } from './directives/button-color.directive';
     SharedRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forRoot(sharedReducers),
   ],
   exports: [
     AlertComponent,
